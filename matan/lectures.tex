@@ -3,6 +3,7 @@
 \usepackage[russian, english]{babel}
 \setmainfont{Times New Roman}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{setspace}
 \onehalfspacing
 \usepackage{amsmath}
@@ -14,9 +15,119 @@
 \newtheorem{corollary}{Следствие}[theorem]
 \newtheorem{lemma}[theorem]{Лемма}
 \title{Лекции по математическому анализу 3 семестр}
-\author{Титилин Александр}
+\author{}
 \date{}
 \begin{document}
-    \maketitle
+\maketitle
+\section{Функции нескольких вещественных переменных}
+\[
+	X \subset \mathbb{R}^{n}
+	.\]
+\[
+	x = (x_1,x_2,\dots,x_{n}) \in X
+	.\]
+\[
+	x \rightarrow f(x)
+	.\]
+\[
+	f(x_1,x_2) = x_1^2 + 3x_2
+	.\]
+\[
+	z = x^{2} + 3y
+	.\]
+\[
+	f : \mathbb{R}^n \to \mathbb{R}
+	.\]
+\section{Замкнутый промежуток в n-мерном пространстве}
+\[
+	a = (a_1,\dots,a_{n})
+	.\]
+\[
+	b = (b_1,\dots,b_{n})
+	.\]
+\[
+	x = (x_1,\dots,x_{n})
+	.\]
+\[
+	\forall  i ~ 1 \le  i \le  n ~ a_{i} \le  x_{i} \le  b_{i}
+	.\]
+% \section{Обобщение круга}
+% Замкнутый круг -- множество всех точек, с одинаковым расстоянием до данной
+\section{Окрестность}
+Окрестность точки -- открытый шар с центром в этой точке
+\section{Внутренняя точка}
+\[
+X \subset \mathbb{R}^{n}
+.\] 
+\[
+a \in \mathbb{R}^{n}
+.\] 
+a называется внутренней точкой множества $X$, если $\exists  r  B(a,r) \subset X$
+\section{Внешняя точка}
+a называется внешней точкой по отношению к множеству $X$, если  $\exists  B(a,r)$ $\subset \mathbb{R}^{n} \setminus X$.
+\section{Граничная точка}
+Если любая граница точки содердит точки и из множества и не оттуда.
+\section{Обозначения шаров}
+ \[
+     B(a,r) = \{x \in \mathbb{R}^{n} \mid \rho(x,a) < R\}
+.\] 
+\[
+     \overline{B}(a,r) = \{x \in \mathbb{R}^{n} \mid \rho(x,a) \le  R\}
+.\] 
+Множество называется открытым, если всего его точки внутренние
+\section{Открытое множество}
+Множество A открыто в  X, если
+\[
+A = X \cap U
+.\] 
+U - открытое множество
+\begin{theorem}
+    Пересечение двух открытых множеств является открытым.
+\end{theorem}
+\begin{proof}
+    Надо доказать, что все точки $U \cap V$ внутренние.\\
+    \[
+    a \in X
+    .\] 
+    а внутренняя точка множетсва U, значит  $\exists r_1  ~ B(a,r_1) \subset U$\\
+    а внутренняя точка множетсва V, значит  $\exists r_2  ~ B(a,r_2) \subset V$
+    \[
+        r = \min{r_1,r_2}
+    .\] 
+    \[
+    B(a,r) \subset U \cap V
+    .\] 
+\end{proof}
+\begin{theorem}
+    \[
+        \{U_{\alpha}\}_{\alpha \in I}
+    .\] 
+    \[
+    U_{\alpha} \in R^{n}
+    .\] 
+    пусть $\forall  \alpha$ $U_{\alpha}$ открытое
+    тогда $\bigcup_{\alpha \in I} U_{\alpha}$ открыто
+\end{theorem}
+\begin{theorem}
+    \[
+    F \subset \mathbb{R}^{n}
+    .\] 
+    F - замкнуто $\iff$  $\mathbb{R}^{n} \setminus F$ - открытое
+\end{theorem}
+\begin{theorem}
+    \begin{enumerate}
+        \item пересечение любого числа замкнутых множеств являкется замкнутым
+        \item объединение конечного числа замкунтых множеств замкнуто
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+     \[
+     U_{\alpha} = \mathbb{R}^{n} \setminus F_{\alpha}
+     .\] 
+     Оно открытое
+     \[
+     \mathbb{R}^{n} \setminus (\bigcap F_{\alpha}) = 
+     \cup (R_{n} \setminus F_{\alpha}) -- открытое множество
+     .\] 
+\end{proof}
 \end{document}
-
