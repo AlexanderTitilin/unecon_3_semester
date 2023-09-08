@@ -1,0 +1,72 @@
+\documentclass[14pt]{extarticle}
+\usepackage{fontspec}
+\usepackage[russian, english]{babel}
+\setmainfont{Times New Roman}
+\usepackage{amssymb}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\title{Лекции по дифференциальным уравнениям}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\section{Список литературы}
+\begin{enumerate}
+	\item Филиппов Лекции по обыкновенным ОДУ.
+	\item Филиппов Сборник задач по дифференциальным уравнениям
+	\item Петровский Лекции по ОДУ
+	\item Самойленко, Кривошея, Перестрюк. ДУ. Примеры и задачи.
+	\item Антидемидович
+\end{enumerate}
+\section{ДУ первого порядка}
+\[
+f(x,y(x),y'(x)) = 0
+.\] 
+\begin{enumerate}
+    \item x - независимая переменная
+    \item $y(x)$ неизвестная функция
+    \item  $y'(x)$ ее производная
+\end{enumerate}
+Решить ДУ -- найти $y(x)$ 
+\section{Примеры}
+\begin{enumerate}
+    \item $y'(x) = y(x)$
+    \item Найти  $y(x) ~$  $y'(x) = f(x)$
+\end{enumerate}
+\section{ДУ n-го порядка}
+\[
+f(x,y,y',\dots,y^{(n)})
+.\] 
+\section{Ду разрешимое относительно производных}
+\[
+y' = f(x,y)
+.\] 
+Будем заниматься только такими уравнениями
+\section{Модель экспонециального роста (эпидемий)}
+\[
+    x(t) - \text{число бактерий}
+.\] 
+\[
+    \dot{x}(t) ~ x(t)
+.\] 
+\[
+    \dot{x} = kx
+.\] 
+\[
+x = C e^{kt}, C \in \mathbb{R}
+.\] 
+Модель роста с учетом эффекта насыщения называется логистической моделью.\\
+Пусть $N$ -- максмимальное количество особей.
+ \[
+     \dot{x} = kx (N - x)
+.\] 
+\end{document}
