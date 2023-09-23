@@ -6,8 +6,10 @@
 \usepackage{setspace}
 \onehalfspacing
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{listings}
 \usepackage{indentfirst}
+\usepackage{hyperref}
 \setlength{\parindent}{1.25cm}
 \usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
 \newtheorem{theorem}{Теорема}
@@ -29,44 +31,312 @@
 \end{enumerate}
 \section{ДУ первого порядка}
 \[
-f(x,y(x),y'(x)) = 0
-.\] 
+	f(x,y(x),y'(x)) = 0
+	.\]
 \begin{enumerate}
-    \item x - независимая переменная
-    \item $y(x)$ неизвестная функция
-    \item  $y'(x)$ ее производная
+	\item x - независимая переменная
+	\item $y(x)$ неизвестная функция
+	\item  $y'(x)$ ее производная
 \end{enumerate}
-Решить ДУ -- найти $y(x)$ 
+Решить ДУ -- найти $y(x)$
 \section{Примеры}
 \begin{enumerate}
-    \item $y'(x) = y(x)$
-    \item Найти  $y(x) ~$  $y'(x) = f(x)$
+	\item $y'(x) = y(x)$
+	\item Найти  $y(x) ~$  $y'(x) = f(x)$
 \end{enumerate}
 \section{ДУ n-го порядка}
 \[
-f(x,y,y',\dots,y^{(n)})
-.\] 
+	f(x,y,y',\dots,y^{(n)})
+	.\]
 \section{Ду разрешимое относительно производных}
 \[
-y' = f(x,y)
-.\] 
+	y' = f(x,y)
+	.\]
 Будем заниматься только такими уравнениями
 \section{Модель экспонециального роста (эпидемий)}
 \[
-    x(t) - \text{число бактерий}
-.\] 
+	x(t) - \text{число бактерий}
+	.\]
 \[
-    \dot{x}(t) ~ x(t)
-.\] 
+	\dot{x}(t) ~ x(t)
+	.\]
 \[
-    \dot{x} = kx
-.\] 
+	\dot{x} = kx
+	.\]
 \[
-x = C e^{kt}, C \in \mathbb{R}
-.\] 
+	x = C e^{kt}, C \in \mathbb{R}
+	.\]
 Модель роста с учетом эффекта насыщения называется логистической моделью.\\
 Пусть $N$ -- максмимальное количество особей.
- \[
-     \dot{x} = kx (N - x)
+\[
+	\dot{x} = kx (N - x)
+	.\]
+\[
+	\dot{x} ~\text{максимальная, при } x = \frac{N}{2}
+	.\]
+\section{Интегрируемые дифференциальные уравнения первого порядка}
+Знакомимся c уравнениями, которые можем решить в явном виде.
+\subsection{Общие определения}
+\begin{definition} \label{diff1}
+	ДУ 1 порядка, разрешенным относительно производной называется уравнение вида
+	\[
+		y' =  f(x,y)
+		.\] \label{1}
+	где $x$ независимая переменная,  $y(x)$ искомая функция. Решить ДУ \ref{1} $\iff$
+	найти $y(x)$. Будем считать $f : G \to \mathbb{R}, G \subset \mathbb{R}^2$, $G$ - связное и открытое множество\\
+	В этой глае  $f$ будет элементарной (школьной) функцией. Так же считается, что $G$ область опредления уравненияю
+\end{definition}
+\begin{definition}
+	Функция $y = \phi(x)$ называется решением ДУ  \ref{diff1} на промежутку $<a,b>$,
+	если выполнены 3 условия
+	\begin{enumerate}
+		\item $\phi \in C^{1}(<a,b>)$ дифференцируема один раз на $<a,b>$
+		\item $\text{Граф}~\phi := \{(x,(\phi(x)) \mid x \in <a,b>\} \subset G$
+		\item $\phi'(x) \equiv f(x,\phi(x))$ на  $<a,b>$
+	\end{enumerate}
+\end{definition}
+\begin{definition}
+	График решения называют интегральной кривой ДУ(\ref{diff1}).
+\end{definition}
+\subsubsection{Самый простой пример}
+\[
+	y' = f(x)
+	.\]
+\[
+	y =  \int\limits_{x_0}^{x} f(s) ds + C, C \in \mathbb{R}
+	.\]
+Решений бесконечно много. Общее решение ДУ(\ref{diff1}) имеет вид
+\[
+	y = \phi(x,C), C \in \mathbb{R}
+	.\]
+\subsubsection{Задача Коши}
+Задано начальное значение решения.
+\begin{definition} \label{kosh}
+	Задача Коши -- называется задача следущего вида
+	\begin{equation}
+		\begin{cases}
+			y' = f(x,y) \\
+			y(x_0) = y_0
+		\end{cases}
+	\end{equation}
+	где, $(x_0,y_0) \in G$
+	Надо найти решения, которые удовлетворяют данному условию. Начальное условие означает, что график решения проходит через $(x_0,y_0)$
+\end{definition}
+\begin{definition}
+	Говорят, что задача Коши \ref{kosh} имеет единственное решение или $(x_0,y_0)$
+	есть точка единственности, если существует окрестность $(x_0,y_0) \in U$, такая что для любых двух интегральных кривых $\Gamma_1,\Gamma_2$, проходящих через точку $(x_0,y_0)$ выполняется $\Gamma_1 \cap U = \Gamma_2 \cap U$ (все интегральные кривые, проходящие $(x_0,y_0)$ совпадают в окрестности $U$). На языке епсилон-дельта
+	\[
+		\exists (x_0 -\delta,x_0 + \delta) \forall   \phi_1 , \phi_2 ~\text{Решения \ref{kosh}}~ \phi_1 \equiv \phi_2~  \text{на}~ (x_1 -\delta , x_0 +\delta)
+		.\]
+	Если имеет не единственное решение то $\forall U$ открестности найдутся 2 интегральные кривые различаются в окрестности.
+\end{definition}
+В дифференицальных уравнениях единственность понимаемся в локальном смысле.
+\subsubsection{Пример Пеано}
+\[
+	\begin{cases}
+		y' = 3y^{\frac{2}{3}} \\
+		y(0) = 0
+	\end{cases}
+	.\]
+    Преверяем 2 решения 
+     \[
+    \phi_1 (x) = 0
+    .\] 
+    \[
+    \phi_2(x) = x^{3}
+    .\] 
+    В любой окрестности  $\phi_1 \neq \phi_2$
+\subsection{Уравнения с разделяющимся переменными}
+\begin{definition}\label{urp}
+    УРП -  уравнение вида $y' = f(x)g(y)$.
+    Всегда предполагаем, что
+    \begin{enumerate}
+        \item f $\in C<a,b>$
+        \item  $g \in C<\alpha,\beta>$
+    \end{enumerate}
+    \[
+    G =  <a,b> \times <\alpha,\beta>
+    .\] 
+\end{definition}
+Как это решать придумал Якоб Бернулли.
+\subsubsection{Неформальный рецепт}
+\[
+\frac{dy}{dx} = f(x)g(y)
 .\] 
+\[
+\frac{dy}{g(y)} = f(x) dx
+.\] 
+\[
+\int \frac{dy}{g(y)} = \int f(x) dx + C
+.\] 
+\subsubsection{Нормальное доказательство}
+\begin{theorem}
+    \[
+    f \in C(<a,b>)
+    .\] 
+    \[
+    g \in C(<\alpha,\beta>)
+    .\] 
+    \[
+    g(y) \neq 0 \forall  y \in <\alpha,\beta>
+    .\] 
+    \begin{enumerate}
+        \item $H(y) $ первообразная $\frac{1}{g(y)}$ 
+        \item $F(x)$ первообразная  $f(x)$
+    \end{enumerate}
+    \begin{enumerate}
+        \item Тогда формула из неформального рецепта задает общее решение  и только его
+        \item $G = <a,b> \times <\alpha,\beta>$ -- область существоавания и единственности, для любой точки  $(x_0,y_0) \in G$ задача задача Коши имеет единственное решение.
+            И это решение задается формулами.
+            \[
+            H(x) = F(x) + H(y_0) - F(x_0)
+            .\] 
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Заметим, что  $H'(y) = \frac{1}{g(y)} \neq 0$ $\implies \exists  H^{-1}$ 
+    Тогда получаем
+    \[
+    y = H^{-1} (F(x) + C)
+    .\] 
+    Формула 2 задает функции вида $y  = y(x)$
+     \begin{enumerate}
+        \item  Пусть $y = y(x)$ есть решение уравнения. Покажем, что оно вкладывается в формулу.  $\exists  C_0 : H(y(x)) - F(x) + C_0$
+            \[
+            \frac{d}{dx} (H(y(x)) - F(x)) \equiv 0
+            .\] 
+            \[
+                H'(y(x)) y'(x) - F'(x) = 0
+            .\] 
+            \[
+            \frac{1}{g(y(x))} * f(x) g(y(x)) - f(x) \equiv 0
+            .\] 
+        \item Теперь обратно
+            \[
+            H(y(x)) \equiv F(x) + C
+            .\] 
+            Продифференцировали
+            \[
+            H'(y(x)) * y'(x) \equiv F'(x)
+            .\] 
+    \end{enumerate}
+    Берем произвольную точку из области $(x_0,y_0) \in G$
+    \[
+    C \equiv H(y(x)) - F(x)
+    .\] 
+    Подставим начальные условия из задачи коши
+    \[
+    C = H(y(x_0)) - F(x_0) = H(y_0) - F (x_0)
+    .\] 
+    Тоесть для любой точки из $G$ можно определить единственным образом
+\end{proof}
+Ответ писать, надо даже если обратная функция не выражается в элементарных вроде $H(y) = y + \arctg{(y))}$, эта хрень считается ответом
+\[
+H(y) - F(x) = C
+.\] 
+\[
+U(x,y) = H(y) - F(x)
+.\] 
+$U$ -- интеграл ДУ
+\begin{definition}
+    $U(x,y)$ называется интегралом ДУ, если выполняются следущие аксиомы (свойства)
+    \begin{enumerate}
+        \item $U \in C^{1}$ 
+        \item $U'_{y} \neq 0$ (производная по y не ноль)
+        \item U обращается в константу при подставлении решения ДУ.
+    \end{enumerate}
+\end{definition}
+Все свойства выполняются для $U(x,y)$
+\begin{definition}[Линия уровня]
+    \[
+        U^{-1}(c) = \{(x,y) \mid U(x,y) = c\}
+    .\] 
+\end{definition}
+Теперь рассмотрим случай, когда $g(y) = 0$
+Пусть  $g(a) = 0 \implies$ стационарное решение
+ \[
+a' \equiv f(x)(g(a))
+.\] 
+\begin{theorem}
+    Пусть $f \in C(<a,b>), g \in C^{1}(<\alpha,\beta>)$
+     Тогда все решения уравнения задаются совокупностью
+     \[
+     H(y) = F(x) + c
+     .\] 
+     \[
+         g(y) = 0 ~\text{совокупность всех стационарных решений.}
+     .\] 
+\end{theorem}
+Эту хрень не доказываем, так как будет следовать из теоремы Пикара.
+\begin{enumerate}
+    \item Пример Пеано
+        \[
+        y' = 3 y^{\frac{2}{3}}
+        .\] 
+        \[
+        y = 0
+        .\] 
+        решение
+        \[
+        \int \frac{y' dy}{3y^{\frac{2}{3}}} = \frac{1}{3} *x^{1/3} * 3 + c = x^{\frac{1}{3}} + c
+        .\] 
+        \[
+        y^{\frac{1}{3}} = x + c
+        .\] 
+        \[
+        y = (x + c)^{3}
+        .\] 
+        \[
+        \left[
+        \begin{gathered}
+            y = 0\\
+            y = (x + c)^{3}
+        \end{gathered}
+        \right
+        .\] 
+В точках $y = 0$ нарушается единственность, решения можно склеивать, получать новые, не из совокупности
+ \[
+y = 
+\begin{cases}
+    (x - c_1)^{3} ,x <  c_1\\
+    0 , c_1 \le  x \le  c_2\\
+    (x - c_2)< x > c_2
+\end{cases}
+.\] 
+$g(y)$ не дифф в 0, условия теоремы 2 не выполняются.
+\item
+     \[
+    y' = y
+    .\] 
+    $y = 0$ решение
+     \[
+         \int \frac{y'}{y} dy = \ln{y} +  c
+    .\] 
+    \[
+        \ln{(|y|)} = x + c
+    .\] 
+    \[
+    |y| = e^{x + c}
+    .\] 
+    \[
+        \left[
+            \begin{gathered}
+                y = 0\\
+                y = \pm c^{x}y e^{c}
+            \end{gathered}
+    \right
+    .\] 
+    \[
+    c_1 = \pm e^{c}
+    .\] 
+    \[
+        \left [
+            \begin{gathered}
+                y = 0\\
+                y = C_1 e^{x}, \forall  c_1 \neq 0
+            \end{gathered}
+        \right
+    .\] 
+    единственность не нарушена
+\end{enumerate}
 \end{document}

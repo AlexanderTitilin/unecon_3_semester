@@ -12,8 +12,10 @@
 \setlength{\parindent}{1.25cm}
 \usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
 \newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
 \newtheorem{corollary}{Следствие}[theorem]
 \newtheorem{lemma}[theorem]{Лемма}
+\DeclareMathOperator{\grad}{grad}
 \title{Лекции по математическому анализу 3 семестр}
 \author{}
 \date{}
@@ -57,77 +59,394 @@
 Окрестность точки -- открытый шар с центром в этой точке
 \section{Внутренняя точка}
 \[
-X \subset \mathbb{R}^{n}
-.\] 
+	X \subset \mathbb{R}^{n}
+	.\]
 \[
-a \in \mathbb{R}^{n}
-.\] 
+	a \in \mathbb{R}^{n}
+	.\]
 a называется внутренней точкой множества $X$, если $\exists  r  B(a,r) \subset X$
 \section{Внешняя точка}
 a называется внешней точкой по отношению к множеству $X$, если  $\exists  B(a,r)$ $\subset \mathbb{R}^{n} \setminus X$.
 \section{Граничная точка}
 Если любая граница точки содердит точки и из множества и не оттуда.
 \section{Обозначения шаров}
- \[
-     B(a,r) = \{x \in \mathbb{R}^{n} \mid \rho(x,a) < R\}
-.\] 
 \[
-     \overline{B}(a,r) = \{x \in \mathbb{R}^{n} \mid \rho(x,a) \le  R\}
-.\] 
+	B(a,r) = \{x \in \mathbb{R}^{n} \mid \rho(x,a) < R\}
+	.\]
+\[
+	\overline{B}(a,r) = \{x \in \mathbb{R}^{n} \mid \rho(x,a) \le  R\}
+	.\]
 Множество называется открытым, если всего его точки внутренние
 \section{Открытое множество}
 Множество A открыто в  X, если
 \[
-A = X \cap U
-.\] 
+	A = X \cap U
+	.\]
 U - открытое множество
 \begin{theorem}
-    Пересечение двух открытых множеств является открытым.
+	Пересечение двух открытых множеств является открытым.
 \end{theorem}
 \begin{proof}
-    Надо доказать, что все точки $U \cap V$ внутренние.\\
-    \[
-    a \in X
-    .\] 
-    а внутренняя точка множетсва U, значит  $\exists r_1  ~ B(a,r_1) \subset U$\\
-    а внутренняя точка множетсва V, значит  $\exists r_2  ~ B(a,r_2) \subset V$
-    \[
-        r = \min{r_1,r_2}
-    .\] 
-    \[
-    B(a,r) \subset U \cap V
-    .\] 
+	Надо доказать, что все точки $U \cap V$ внутренние.\\
+	\[
+		a \in X
+		.\]
+	а внутренняя точка множетсва U, значит  $\exists r_1  ~ B(a,r_1) \subset U$\\
+	а внутренняя точка множетсва V, значит  $\exists r_2  ~ B(a,r_2) \subset V$
+	\[
+		r = \min{r_1,r_2}
+		.\]
+	\[
+		B(a,r) \subset U \cap V
+		.\]
 \end{proof}
 \begin{theorem}
-    \[
-        \{U_{\alpha}\}_{\alpha \in I}
-    .\] 
-    \[
-    U_{\alpha} \in R^{n}
-    .\] 
-    пусть $\forall  \alpha$ $U_{\alpha}$ открытое
-    тогда $\bigcup_{\alpha \in I} U_{\alpha}$ открыто
+	\[
+		\{U_{\alpha}\}_{\alpha \in I}
+		.\]
+	\[
+		U_{\alpha} \in R^{n}
+		.\]
+	пусть $\forall  \alpha$ $U_{\alpha}$ открытое
+	тогда $\bigcup_{\alpha \in I} U_{\alpha}$ открыто
 \end{theorem}
 \begin{theorem}
-    \[
-    F \subset \mathbb{R}^{n}
-    .\] 
-    F - замкнуто $\iff$  $\mathbb{R}^{n} \setminus F$ - открытое
+	\[
+		F \subset \mathbb{R}^{n}
+		.\]
+	F - замкнуто $\iff$  $\mathbb{R}^{n} \setminus F$ - открытое
 \end{theorem}
 \begin{theorem}
-    \begin{enumerate}
-        \item пересечение любого числа замкнутых множеств являкется замкнутым
-        \item объединение конечного числа замкунтых множеств замкнуто
-    \end{enumerate}
+	\begin{enumerate}
+		\item пересечение любого числа замкнутых множеств являкется замкнутым
+		\item объединение конечного числа замкунтых множеств замкнуто
+	\end{enumerate}
 \end{theorem}
 \begin{proof}
-     \[
-     U_{\alpha} = \mathbb{R}^{n} \setminus F_{\alpha}
-     .\] 
-     Оно открытое
-     \[
-     \mathbb{R}^{n} \setminus (\bigcap F_{\alpha}) = 
-     \cup (R_{n} \setminus F_{\alpha}) -- открытое множество
-     .\] 
+	\[
+		U_{\alpha} = \mathbb{R}^{n} \setminus F_{\alpha}
+		.\]
+	Оно открытое
+	\[
+		\mathbb{R}^{n} \setminus (\bigcap F_{\alpha}) =
+		\cup (R_{n} \setminus F_{\alpha}) -- открытое множество
+		.\]
 \end{proof}
+\section{Замыкание}
+\begin{definition}
+	Пусть $X \subset \mathbb{R}^{n}$. Замыкание $X$,  $\overline{X}$ наименьшее замкнутое множество, в котором лежит X.
+\end{definition}
+\[
+	B(a,r)
+	.\]
+\[
+	\forall  b \in B(a,r)
+	.\]
+\[
+	r_1 = r - d(a,b)
+	.\]
+Рассмотрим $B(b,r_1)$, докажем, что $B(b,r_1) \subset B(a,r)$
+\[
+	\forall  x \in B(b,r_1)
+	.\]
+Нужно доказать, что $x \in B(a,r)$
+\[
+	d(x,a) < R
+	.\]
+Итак, $d(x,a) \le  d(x,b) + d(a,b)$
+\[
+	d(x,a) \le  d(x,b) + r - r_1
+	.\]
+\section{Компактно}
+\begin{definition}
+	\[
+		X \subset \mathbb{R}^{n}
+		.\]
+	X компактно, если замкнуто и ограничено
+\end{definition}
+\begin{definition}
+	Множетсво ограничено, если лежит в неком шаре.
+\end{definition}
+\section{Предел в $\mathbb{R}^{n}$}
+\begin{definition}
+    \[
+        (x_{n} \to a)
+    .\] 
+    \[
+    \forall  \epsilon > 0 ~ \exists  n_{0} ~  \forall  n \ge  n_0 d(x_{n},a) \le  \epsilon
+    .\] 
+\end{definition}
+\begin{theorem}[о покоординатной сходимости]
+    $(x^{(n)})$ -- последовательность точек в $\mathbb{R}^{n}$, $a \in \mathbb{R}^{n}$
+     \[
+     x^{(n)} \to a \iff x_{k}^{(n)} \to a_{k}
+     .\] 
+\end{theorem}
+\begin{proof}
+    Для случая $n = 2$
+     \[
+         (x_{n},y_{n}) , (a,b)
+    .\] 
+    \[
+    |x_{n} - a| \le  \sqrt{(x_{n} - a)^2 + (y_{n} - b)^2}
+    .\] 
+    \[
+    |y_{n} - b| \le  \sqrt{(x_{n} - a)^2 + (y_{n} - b)^2}
+    .\] 
+\end{proof}
+\section{Упражнения}
+\begin{enumerate}
+    \item 
+Пусть множество $X$ замкнуто, тогда оно содержит все свои предельные точки. Верно ли обратное
+\end{enumerate}
+\section{Предел функции n переменных}
+\[
+X \subset \mathbb{R}^{n}
+.\] 
+\[
+V = abc
+.\] 
+\[
+    X = \{ (a,b,c) | a>0,b>0,c>0\}
+.\] 
+\[
+x + y^{2} + z^{3} = 1
+.\] 
+\begin{definition}
+    \[
+    X \subset \mathbb{R}^{n}, f : X \to \mathbb{R}
+    .\] 
+    \[
+    a \in \mathbb{R}^{n}
+    .\] 
+    a предельная точка множества $X$
+     \[
+    A = \lim_{x \to a} f(x)
+    .\] 
+    если
+    \[
+    \forall  (x^{(n)}) 
+    \begin{cases}
+        (x^{(n)}) \in X\\
+        x^{(n)} \neq a\\
+        x^{(n)} \to a
+    \end{cases}
+    .\] 
+    \[
+    f(x^{(n)}) \to A
+    .\] 
+    \[
+    \lim_{x \to a} f(x) = A \iff \forall  \epsilon > 0 \exists  \delta >0 d(x,a) < \delta \implies |f(x) - A| < \epsilon
+    .\] 
+\end{definition}
+\begin{theorem}[Вейрештрасса]
+    Пусть $X \subset \mathbb{R}^{n}, f : X \to \mathbb{R}$. $f$ непрерывна на $X$ 
+    f принимает на X наименьшее и наибольшее значение
+\end{theorem}
+\section{Теоремы о непрерывных функциях}
+\subsection{Связанное множество}
+\begin{definition}
+    Путь в $\mathbb{R}^{n}$ -- набор непрерывных функций $x(t) = ( x_1(t),\dots,x_{n}(t) )$ 
+    заданных на $[a,b]$
+    
+    Точка $x(a)$ называется началом пути.  $x(b)$ конечная точка пути. Множество всех точек $x(t), t \in [a,b]$ носитель пути.
+\end{definition}
+\begin{definition}
+    Пусть $X \subset \mathbb{R}^{n}$. X называется связанным, если для любых точек
+    $p,q \in X$ существует путь с началом  $p$ , концом  $q$, носитель которого лежит в $X$
+\end{definition}
+\section{Теорема Вейрштрасса}
+\begin{theorem}
+    Пусть $X$ -- компактное подмножество $\mathbb{R}^{n}$, $f$ функция заданная на  $X$, и непрерывная во всех точках множества  $X$. Тогда $f$ принимает и наибольшее и наименьшее значение.
+\end{theorem}
+\begin{proof}
+    Cлучай для $n  = 1$
+    \[
+    \forall  x f(x) \neq M
+    .\] 
+    \[
+    f(x) < M
+    .\] 
+    \[
+    g(x) = \frac{1}{M - f(x)} \le  C
+    .\] 
+    \[
+    M - f(x) \ge  \frac{1}{C}
+    .\] 
+    \[
+    M - \frac{1}{C} \ge  f(x)
+    .\] 
+    Пусть нет наибольшего значения
+    \[
+    \exists  x_1  f(x_1) > 1
+    .\] 
+    Иcходный промежуток  $\delta_1$
+    \[
+        \delta_1 \supset \delta_2
+    .\]
+    \[
+    x_2 \in \delta_2
+    .\] 
+    \[
+    f(x_2) > 2
+    .\] 
+    \[
+    f(x_{n}) > n
+    .\] 
+    \[
+        \bigcup  \delta = \{a\}
+    .\]
+    \[
+    x_{n} \to a
+    .\] 
+    \[
+    x_{n} \in \delta_{n}, a \in \delta_{n}
+    .\] 
+    \[
+    |\delta_{n}| = \frac{|\delta_1|}{2^{n-1}}
+    .\] 
+    \[
+    |x_{n} - a| < \frac{|\delta_{1}|}{2^{n - 1}} \to 0
+    .\] 
+    \[
+    x_{n} \to a
+    .\] 
+    \[
+    f(x_{n}) \to f(a)
+    .\] 
+    Неограниченная посл чисел стремится к числу, какакя-то хуйня такого не бывает.
+    
+    Теперь для функции $2$ переменных
+    Докажем что  f ограничена сверху. Предположим это неправда, тогда $\exists x^{(1)} \in \Delta_{1} \cap X,  f(x^{(1)}) >  1$
+    \[
+   \exists x_2 \in  \Delta x_2 \cap X
+    .\] 
+    f неограниченна на $\Delta_2 \cap X, f(x^{2}) > 2$
+    по лемме \ref{1} $\bigcap \Delta = \{a\}$ состоит из одной точки.
+    Тогда последовательность $x^{(n)} \to a$
+    \[
+    x^{(n)} \in \Delta
+    .\] 
+    \[
+        d(x^{n},a) \le \sqrt{2} \text{размер} \Delta_{n}
+    .\] 
+    Дальше как и для функции одной переменной.
+\end{proof}
+\begin{lemma}[О вложенных отрезках] \label{1}
+    \[
+    n  = 2
+    .\] 
+    \[
+        a_1 \le  x_1 \le  b_1 , x_1 \in [a_1,b_1]
+    .\] 
+    \[
+        a_2 \le  x_2 \le  b_2 , x_2 \in [a_2,b_2]
+    .\] 
+    \[
+        [a_1,b_1] \times [a_2,b_2]
+    .\]  
+    Дана последовательность вложенных замкнутых $n$ мерных промежутков
+    \[
+    \varDelta_{1}  \supset \varDelta_2 \supset 
+    .\] 
+    $d(\varDelta)$ -  длина наибольшей стороны
+     \[
+    d(\varDelta_{n}) \to 0
+    .\] 
+    Тогда в пересечение одна точка
+\end{lemma}
+\begin{proof}
+    Спроектируем все промежутки на ось абцисс, мы получим последовательность замкнутых вложенных промежутков, лежаших впромежутке $[a_1,b_1]$ таких что длины этих прожетков стремятся к 0, пересечение таких промежутков состоит из 1 точки $\alpha_1$
+    Анлогично спроектировали эти промежутки на ось ординат, получили последовательность замкнутых вложенных промежутков лежаших в $[a_2,b_2]$ по лемму о вложенных промежутках их пересечение  состоит из одной точки $\alpha_2$
+    Рассмотрим точку с координатами $\alpha_1,\alpha_2$
+\end{proof}
+\section{Теорема Больцано}
+\begin{theorem}
+    Пусть $X$ связное подмножество пространства  $\mathbb{R}^{n}$,
+    пусть $f$ непрерывная функция, заданная на  $X$. Пусть  $p,q$ значения функции  $f$, причем  $p < q$. Тогда  $\forall  r \in (p,q) \exists x \in X$ , $f(x) = r$
+\end{theorem}
+\section{Множество уровня}
+\[
+f: X \subset \mathbb{R}^{n} \to \mathbb{R}
+.\] 
+\[
+f(x_1,\dots,x_{n})
+.\] 
+\[
+    \{x \mid x \in X, f(x) = c\}
+.\] 
+\section{Дифферинцирование нескольких переменных}
+\begin{definition}[Производная по направлению]
+    \[
+    \lim_{h \to 0} \frac{f(x_0 + l_1 h, y_0 + l_2 h) - f(x_0,y_0)}{h}
+    .\] 
+\end{definition}
+Пусть $\vec{l} = (0,1)$
+\[
+\frac{\partial f}{\partial x}=
+\lim_{h \to 0} \frac{f(x_0 + h,y_0) - f(x_0,y_0)}{h}
+.\] 
+частная производная по $x$
+\[
+\frac{\partial f}{\partial y} (x_0,y_0) = 
+\lim_{h \to 0} \frac{f(x_0,y_0  + h) - f(x_0,y_0)}{h}
+.\] 
+\begin{definition}[Градиент]
+    \[
+    \grad f (x_0,y_0) = (\frac{\partial f}{\partial x} (x_0,y_0),\frac{\partial f}{\partial x})
+    .\] 
+\end{definition}
+\begin{definition}[точка экстренума (максимума)]
+    $(x_0,y_0)$ - точка максимума, если $\exists$ окретсность U, $\forall x  \in U$  $f(x) < f(x_0)$
+\end{definition}
+\begin{theorem}[Ферма]
+    \[
+    X \subset \mathbb{R}^{2}
+    .\] 
+    \[
+    f : X \to \mathbb{R}
+    .\] 
+    $(x_0,y_0)$ внутренняя точка X. Пусть $\exists  \frac{\partial f}{\partial x} (x_0$
+\end{theorem}
+\subsection{Пример}
+\[
+f(x,y) = x^2 + 2xy
+.\] 
+\[
+\frac{\partial f}{\partial x} = 2x + 2y = 0
+.\] 
+\[
+\frac{\partial f}{\partial y} = 2x = 0
+.\] 
+\[
+\begin{cases}
+    x = 0\\
+    y = 0
+\end{cases}
+.\] 
+\[
+f(0,0) = 0
+.\] 
+\section{Условный экстренум}
+\[
+f(x_0 + h) - f(x_0) f'(x_0) h + o(h)
+.\] 
+\begin{definition}[Дифференцируемость функции]
+    \[
+    f(x_0 + h) - f(x_0) = ch + o(h)
+    .\] 
+\end{definition}
+\begin{theorem}[О полном приращении]
+    Пусть функция $f$ задана на  $X \subset \mathbb{R}^{2}$, a внутренняя точка $X$, $a = (x_0,y_0)$.  Пусть $f$ имеет частную производную во всех точках в некоторой окрестности точки  $a$. Пусть эти частные производные непрерывны в точке a. Тогда вблизи точки a имеет место
+     \[
+    f(x,y) - f(x_0,y_0) = \partial_{x} f (x_0,y_0) (x_0 - y_0) + \partial_{y} (x_0,y_0) (y - y_0) + \alpha(x,y) (x - x_0) + \beta(x,y) (y - y_0)
+    .\] 
+    $\alpha,\beta$ бесконечно малые в  $(x_0,y_0)$
+\end{theorem}
+\begin{proof}
+    
+\end{proof}
+\begin{definition}[Дифференцируемость функции нескольких переменных]
+    
+\end{definition}
 \end{document}
