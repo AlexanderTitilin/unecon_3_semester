@@ -138,205 +138,1217 @@
 		y(0) = 0
 	\end{cases}
 	.\]
-    Преверяем 2 решения 
-     \[
-    \phi_1 (x) = 0
-    .\] 
-    \[
-    \phi_2(x) = x^{3}
-    .\] 
-    В любой окрестности  $\phi_1 \neq \phi_2$
+Преверяем 2 решения
+\[
+	\phi_1 (x) = 0
+	.\]
+\[
+	\phi_2(x) = x^{3}
+	.\]
+В любой окрестности  $\phi_1 \neq \phi_2$
 \subsection{Уравнения с разделяющимся переменными}
 \begin{definition}\label{urp}
-    УРП -  уравнение вида $y' = f(x)g(y)$.
-    Всегда предполагаем, что
-    \begin{enumerate}
-        \item f $\in C<a,b>$
-        \item  $g \in C<\alpha,\beta>$
-    \end{enumerate}
-    \[
-    G =  <a,b> \times <\alpha,\beta>
-    .\] 
+	УРП -  уравнение вида $y' = f(x)g(y)$.
+	Всегда предполагаем, что
+	\begin{enumerate}
+		\item f $\in C<a,b>$
+		\item  $g \in C<\alpha,\beta>$
+	\end{enumerate}
+	\[
+		G =  <a,b> \times <\alpha,\beta>
+		.\]
 \end{definition}
 Как это решать придумал Якоб Бернулли.
 \subsubsection{Неформальный рецепт}
 \[
-\frac{dy}{dx} = f(x)g(y)
-.\] 
+	\frac{dy}{dx} = f(x)g(y)
+	.\]
 \[
-\frac{dy}{g(y)} = f(x) dx
-.\] 
+	\frac{dy}{g(y)} = f(x) dx
+	.\]
 \[
-\int \frac{dy}{g(y)} = \int f(x) dx + C
-.\] 
+	\int \frac{dy}{g(y)} = \int f(x) dx + C
+	.\]
 \subsubsection{Нормальное доказательство}
 \begin{theorem}
-    \[
-    f \in C(<a,b>)
-    .\] 
-    \[
-    g \in C(<\alpha,\beta>)
-    .\] 
-    \[
-    g(y) \neq 0 \forall  y \in <\alpha,\beta>
-    .\] 
-    \begin{enumerate}
-        \item $H(y) $ первообразная $\frac{1}{g(y)}$ 
-        \item $F(x)$ первообразная  $f(x)$
-    \end{enumerate}
-    \begin{enumerate}
-        \item Тогда формула из неформального рецепта задает общее решение  и только его
-        \item $G = <a,b> \times <\alpha,\beta>$ -- область существоавания и единственности, для любой точки  $(x_0,y_0) \in G$ задача задача Коши имеет единственное решение.
-            И это решение задается формулами.
-            \[
-            H(x) = F(x) + H(y_0) - F(x_0)
-            .\] 
-    \end{enumerate}
+	\[
+		f \in C(<a,b>)
+		.\]
+	\[
+		g \in C(<\alpha,\beta>)
+		.\]
+	\[
+		g(y) \neq 0 \forall  y \in <\alpha,\beta>
+		.\]
+	\begin{enumerate}
+		\item $H(y) $ первообразная $\frac{1}{g(y)}$
+		\item $F(x)$ первообразная  $f(x)$
+	\end{enumerate}
+	\begin{enumerate}
+		\item Тогда формула из неформального рецепта задает общее решение  и только его
+		\item $G = <a,b> \times <\alpha,\beta>$ -- область существоавания и единственности, для любой точки  $(x_0,y_0) \in G$ задача задача Коши имеет единственное решение.
+		      И это решение задается формулами.
+		      \[
+			      H(x) = F(x) + H(y_0) - F(x_0)
+			      .\]
+	\end{enumerate}
 \end{theorem}
 \begin{proof}
-    Заметим, что  $H'(y) = \frac{1}{g(y)} \neq 0$ $\implies \exists  H^{-1}$ 
-    Тогда получаем
-    \[
-    y = H^{-1} (F(x) + C)
-    .\] 
-    Формула 2 задает функции вида $y  = y(x)$
-     \begin{enumerate}
-        \item  Пусть $y = y(x)$ есть решение уравнения. Покажем, что оно вкладывается в формулу.  $\exists  C_0 : H(y(x)) - F(x) + C_0$
-            \[
-            \frac{d}{dx} (H(y(x)) - F(x)) \equiv 0
-            .\] 
-            \[
-                H'(y(x)) y'(x) - F'(x) = 0
-            .\] 
-            \[
-            \frac{1}{g(y(x))} * f(x) g(y(x)) - f(x) \equiv 0
-            .\] 
-        \item Теперь обратно
-            \[
-            H(y(x)) \equiv F(x) + C
-            .\] 
-            Продифференцировали
-            \[
-            H'(y(x)) * y'(x) \equiv F'(x)
-            .\] 
-    \end{enumerate}
-    Берем произвольную точку из области $(x_0,y_0) \in G$
-    \[
-    C \equiv H(y(x)) - F(x)
-    .\] 
-    Подставим начальные условия из задачи коши
-    \[
-    C = H(y(x_0)) - F(x_0) = H(y_0) - F (x_0)
-    .\] 
-    Тоесть для любой точки из $G$ можно определить единственным образом
+	Заметим, что  $H'(y) = \frac{1}{g(y)} \neq 0$ $\implies \exists  H^{-1}$
+	Тогда получаем
+	\[
+		y = H^{-1} (F(x) + C)
+		.\]
+	Формула 2 задает функции вида $y  = y(x)$
+	\begin{enumerate}
+		\item  Пусть $y = y(x)$ есть решение уравнения. Покажем, что оно вкладывается в формулу.  $\exists  C_0 : H(y(x)) - F(x) + C_0$
+		      \[
+			      \frac{d}{dx} (H(y(x)) - F(x)) \equiv 0
+			      .\]
+		      \[
+			      H'(y(x)) y'(x) - F'(x) = 0
+			      .\]
+		      \[
+			      \frac{1}{g(y(x))} * f(x) g(y(x)) - f(x) \equiv 0
+			      .\]
+		\item Теперь обратно
+		      \[
+			      H(y(x)) \equiv F(x) + C
+			      .\]
+		      Продифференцировали
+		      \[
+			      H'(y(x)) * y'(x) \equiv F'(x)
+			      .\]
+	\end{enumerate}
+	Берем произвольную точку из области $(x_0,y_0) \in G$
+	\[
+		C \equiv H(y(x)) - F(x)
+		.\]
+	Подставим начальные условия из задачи коши
+	\[
+		C = H(y(x_0)) - F(x_0) = H(y_0) - F (x_0)
+		.\]
+	Тоесть для любой точки из $G$ можно определить единственным образом
 \end{proof}
 Ответ писать, надо даже если обратная функция не выражается в элементарных вроде $H(y) = y + \arctg{(y))}$, эта хрень считается ответом
 \[
-H(y) - F(x) = C
-.\] 
+	H(y) - F(x) = C
+	.\]
 \[
-U(x,y) = H(y) - F(x)
-.\] 
+	U(x,y) = H(y) - F(x)
+	.\]
 $U$ -- интеграл ДУ
 \begin{definition}
-    $U(x,y)$ называется интегралом ДУ, если выполняются следущие аксиомы (свойства)
-    \begin{enumerate}
-        \item $U \in C^{1}$ 
-        \item $U'_{y} \neq 0$ (производная по y не ноль)
-        \item U обращается в константу при подставлении решения ДУ.
-    \end{enumerate}
+	$U(x,y)$ называется интегралом ДУ, если выполняются следущие аксиомы (свойства)
+	\begin{enumerate}
+		\item $U \in C^{1}$
+		\item $U'_{y} \neq 0$ (производная по y не ноль)
+		\item U обращается в константу при подставлении решения ДУ.
+	\end{enumerate}
 \end{definition}
 Все свойства выполняются для $U(x,y)$
 \begin{definition}[Линия уровня]
-    \[
-        U^{-1}(c) = \{(x,y) \mid U(x,y) = c\}
-    .\] 
+	\[
+		U^{-1}(c) = \{(x,y) \mid U(x,y) = c\}
+		.\]
 \end{definition}
 Теперь рассмотрим случай, когда $g(y) = 0$
 Пусть  $g(a) = 0 \implies$ стационарное решение
- \[
-a' \equiv f(x)(g(a))
-.\] 
+\[
+	a' \equiv f(x)(g(a))
+	.\]
 \begin{theorem}
-    Пусть $f \in C(<a,b>), g \in C^{1}(<\alpha,\beta>)$
-     Тогда все решения уравнения задаются совокупностью
-     \[
-     H(y) = F(x) + c
-     .\] 
-     \[
-         g(y) = 0 ~\text{совокупность всех стационарных решений.}
-     .\] 
+	Пусть $f \in C(<a,b>), g \in C^{1}(<\alpha,\beta>)$
+	Тогда все решения уравнения задаются совокупностью
+	\[
+		H(y) = F(x) + c
+		.\]
+	\[
+		g(y) = 0 ~\text{совокупность всех стационарных решений.}
+		.\]
 \end{theorem}
 Эту хрень не доказываем, так как будет следовать из теоремы Пикара.
 \begin{enumerate}
-    \item Пример Пеано
-        \[
-        y' = 3 y^{\frac{2}{3}}
-        .\] 
-        \[
-        y = 0
-        .\] 
-        решение
-        \[
-        \int \frac{y' dy}{3y^{\frac{2}{3}}} = \frac{1}{3} *x^{1/3} * 3 + c = x^{\frac{1}{3}} + c
-        .\] 
-        \[
-        y^{\frac{1}{3}} = x + c
-        .\] 
-        \[
-        y = (x + c)^{3}
-        .\] 
-        \[
-        \left[
-        \begin{gathered}
-            y = 0\\
-            y = (x + c)^{3}
-        \end{gathered}
-        \right
-        .\] 
-В точках $y = 0$ нарушается единственность, решения можно склеивать, получать новые, не из совокупности
- \[
-y = 
-\begin{cases}
-    (x - c_1)^{3} ,x <  c_1\\
-    0 , c_1 \le  x \le  c_2\\
-    (x - c_2)< x > c_2
-\end{cases}
-.\] 
-$g(y)$ не дифф в 0, условия теоремы 2 не выполняются.
-\item
-     \[
-    y' = y
-    .\] 
-    $y = 0$ решение
-     \[
-         \int \frac{y'}{y} dy = \ln{y} +  c
-    .\] 
-    \[
-        \ln{(|y|)} = x + c
-    .\] 
-    \[
-    |y| = e^{x + c}
-    .\] 
-    \[
-        \left[
-            \begin{gathered}
-                y = 0\\
-                y = \pm c^{x}y e^{c}
-            \end{gathered}
-    \right
-    .\] 
-    \[
-    c_1 = \pm e^{c}
-    .\] 
-    \[
-        \left [
-            \begin{gathered}
-                y = 0\\
-                y = C_1 e^{x}, \forall  c_1 \neq 0
-            \end{gathered}
-        \right
-    .\] 
-    единственность не нарушена
+	\item Пример Пеано
+	      \[
+		      y' = 3 y^{\frac{2}{3}}
+		      .\]
+	      \[
+		      y = 0
+		      .\]
+	      решение
+	      \[
+		      \int \frac{y' dy}{3y^{\frac{2}{3}}} = \frac{1}{3} *x^{1/3} * 3 + c = x^{\frac{1}{3}} + c
+		      .\]
+	      \[
+		      y^{\frac{1}{3}} = x + c
+		      .\]
+	      \[
+		      y = (x + c)^{3}
+		      .\]
+	      \[
+		      \left[
+		      \begin{gathered}
+			      y = 0\\
+			      y = (x + c)^{3}
+		      \end{gathered}
+		      \right
+		      .\]
+	      В точках $y = 0$ нарушается единственность, решения можно склеивать, получать новые, не из совокупности
+	      \[
+		      y =
+		      \begin{cases}
+			      (x - c_1)^{3} ,x <  c_1 \\
+			      0 , c_1 \le  x \le  c_2 \\
+			      (x - c_2)< x > c_2
+		      \end{cases}
+		      .\]
+	      $g(y)$ не дифф в 0, условия теоремы 2 не выполняются.
+	\item
+	      \[
+		      y' = y
+		      .\]
+	      $y = 0$ решение
+	      \[
+		      \int \frac{y'}{y} dy = \ln{y} +  c
+		      .\]
+	      \[
+		      \ln{(|y|)} = x + c
+		      .\]
+	      \[
+		      |y| = e^{x + c}
+		      .\]
+	      \[
+		      \left[
+		      \begin{gathered}
+			      y = 0\\
+			      y = \pm c^{x}y e^{c}
+		      \end{gathered}
+		      \right
+		      .\]
+	      \[
+		      c_1 = \pm e^{c}
+		      .\]
+	      \[
+		      \left [
+		      \begin{gathered}
+			      y = 0\\
+			      y = C_1 e^{x}, \forall  c_1 \neq 0
+		      \end{gathered}
+		      \right
+		      .\]
+	      единственность не нарушена
 \end{enumerate}
+\section{Линейный уравнения (Неоднородное)}
+\begin{definition}[Линейное уравнение (неоднородное)]\label{lin}
+	\[
+		y' = p(x) y + q(x)
+		.\]
+\end{definition}
+\begin{definition}[Линейное однородное уравнение]\label{odn}
+	\[
+		y' = p(x) y
+		.\]
+\end{definition}
+Ввел эти уравнения И.Бернулли. Как решать Д.Бернулли.
+Рассмотрим вариант подстановки Бернулли, который в литературе называют метод вариации произвольной постоянной Лагранжа (метод Лагранжа).
+\subsection{}
+Пусть $p,q \in C(<a,b>)$. Тогда правая часть  $\ref{lin}$
+$f(x,y) = p(x) y + q(x) \in C(G) G = <a,b> \times \mathbb{R}$ $G$ -- область определения \ref{lin}
+\begin{theorem}
+	Пусть $p,q$ непрерывны и есть только одно решение. Все решения линейного уравнения \ref{lin} задаются формулой
+	\begin{eqnarray}\label{linsolve}
+		y = e^{\int\limits_{x_0}^{x} p(t) dt } (C +\int\limits_{x_0}^{x} q(s) e^{-\int\limits_{x_0}^{s} p(t) dt } ds  )
+	\end{eqnarray}
+	$\forall  (x_0,y_0) \in G$ задача Коши имеет одно решение и оно задается формулой
+	\begin{equation}
+		y = e^{\int\limits_{x_0}^{x} p(t) dt } (y_0 +\int\limits_{x_0}^{x} q(s) e^{-\int\limits_{x_0}^{s} p(t) dt } ds  )
+	\end{equation}
+\end{theorem}
+\subsubsection{Метод лагранжа}
+\begin{enumerate}
+	\item Берем однородное уравнение $y' = p(x) y$
+	\item Это уравнение с разделяющимися переменными. Умеем решать.
+	      \[
+		      y = Ce^{\int\limits_{x_0}^{x} p(t) dt }
+		      .\]
+	\item В уравнение \ref{lin} замену переменных $y = z e^{\int\limits_{x_0}^{x} p(t)dt }$
+	\item Делаем замену переменных
+	      \begin{equation}
+		      (z  e ^{\int\limits_{x_0}^{x} p(t) dt })' =
+		      p(x) (z e^{\int\limits_{x_0}^{x} p(t) dt  }) + q(x)
+	      \end{equation}
+	      \[
+		      z' e^{\int\limits_{x_0}^{x} p(t) dt } + z * e^{\int\limits_{x_0}^{x} p(t) dt } p(x) = p(x) z^{\int\limits_{x_0}^{x} p(t) dt  } + q(x)
+		      .\]
+	      \[
+		      z' e^{\int\limits_{x_0}^{x} p(t) dt } = q(x)
+		      .\]
+	      \[
+		      z' = q(x) e^{-\int\limits_{x_0}^{x} p(t) dt }
+		      .\]
+	      Тупо найти первообразную.
+	      \[
+		      z = \int\limits_{x_0}^{x}  q(s) e^{-\int\limits_{x_0}^{s} p(t) dt  }  ds + C
+		      .\]
+\end{enumerate}
+\begin{proof}
+	Сначала выводим формулу \ref{linsolve} Методом Лагранжа. Покажем, что $G$
+	область существования и единственности. Берем  $\forall  (x_0,y_0) \in G$. Надо показать, что существует только одно решение график, которого проходит через эту точку. В \ref{linsolve} подставим $(y_0,x_0)$
+	\[
+		y_0 = e^{\int\limits_{x_0}^{x_0} p(t) dt } ( C + \int\limits_{x_0}^{x_0} q(s)
+		e^{-\int\limits_{x_0}^{s} p(t) dt  })
+		.\]
+	\[
+		e^{0} = 0
+		.\]
+	Интеграл в скобках тоже 0, является решением
+\end{proof}
+\subsubsection{Какую замену переменных надо делать в ДУ}
+\begin{enumerate}
+	\item $G \subset \mathbb{R}^2$ поэтому замена $\mathbb{R}^2 \to \mathbb{R}^2$
+	      \[
+		      (x,y) \to (x,z)
+		      .\]
+	\item Биективность.
+	\item Замена должна сохранять гладкость (дифференцируемость)
+\end{enumerate}
+\subsubsection{Пример}
+\[
+	y' = \frac{y}{x} + x
+	.\]
+\[
+	G = \mathbb{R} \backslash \{x=0\}
+	.\]
+\begin{enumerate}
+	\item
+	      \[
+		      y' = \frac{y}{x}
+		      .\]
+	      $y = 0$ решение
+	      \[
+		      \int \frac{dy}{y} = \int \frac{dx}{x}
+		      .\]
+	      \[
+		      \ln{|y|} = \ln{|x|} + c = \ln{C_1 |x|}
+		      .\]
+	      \[
+		      y = \pm C_1 x , c_2 = \pm c_1
+		      .\]
+	      \[
+		      y = c_2 x
+		      .\]
+	\item
+	      Возвращаемся к ЛНУ
+	      \[
+		      y = z x
+		      .\]
+	      \[
+		      (z x)' = \frac{z x}{x} + x
+		      .\]
+	      \[
+		      z' x + z = z + x
+		      .\]
+	      \[
+		      z' = 1
+		      .\]
+	      \[
+		      z = x + c
+		      .\]
+	      \[
+		      y = (x + c) x
+		      .\]
+\end{enumerate}
+\subsection{Уравнения сводящиеся к уравнениям с разделяющимися переменными}
+\subsubsection{Однородные уравнения}
+\begin{equation}\label{ou}
+	y' = f(x,y)
+\end{equation}
+Такое уравнение называется однородным $\iff$ если не меняется при замене  $(x,y) \to  (\lambda x,\lambda y) $
+\begin{equation} \label{huita}
+	M(x,y) dx + N(x,y) dy = 0
+\end{equation}
+\[
+	\frac{dx}{dy} = \frac{1}{f(x,y)}
+	.\]
+\ref{huita} объединяет оба уравния
+\subsubsection{Пример}
+\[
+	(x^2 - xy) dx + y^2 dy = 0
+	.\]
+\[
+	y' = \frac{x^2 + xy }{y^2} = - (\frac{x}{y})^2 + \frac{x}{y}
+	.\]
+Пытаемся эту хуиту свести к $y' = g(\frac{y}{x})$
+\[
+	(x,y) \to (x,z)
+	.\]
+\[
+	(zx)' = g(z)
+	.\]
+\[
+	z' = \frac{g(z) - z}{x}
+	.\]
+\subsubsection{Ф. 101}
+\[
+	(x + 2y) dx - x dy = 0
+	.\]
+Попробуем замену $(x,y) \to (\lambda x, \lambda ,y)$
+\[
+	\lambda^2 (x + 2y) dx - \lambda^2 x dy = 0
+	.\]
+На лямбду сократили, уравнение однородно
+\[
+	(x,y) \to (x,z), y = zx
+	.\]
+\[
+	(x + 2zx) dx 0 d(z x) =
+	.\]
+\[
+	(x + 2zx ) dx -x (zdx + x dz)= 0
+	.\]
+$x = 0$ реш вертикальная прямая
+\[
+	(1 + 2z) dx - xdz - zdx = 0c
+	.\]
+\[
+	(1 + z) dx = xdz
+	.\]
+$z = -1 : y = -x $ да является решением, горизонтальная прямая
+\[
+	\ln{|z + 1|} = \ln{|x|} + c
+	.\]
+\[
+	\ln|\frac{y}{x} + 1| = \ln|x| +  c
+	.\]
+\[
+	x = 0
+	.\]
+\[
+	y = -x
+	.\]
+\section{Уравнение в полных дифференцалах}
+\begin{equation}
+	M(x,y) dx + N(x,y) dy = 0
+\end{equation}
+Это уравнение в полных дифференциалах
+\[
+	y' = f(x,y)
+	.\]
+Такое уравнение можно переписать ввиде уравнения в полных диффереенциалох
+\[
+	dy - f(x,y) dx = 0
+	.\]
+В уравнении 2 $x,y$ неравноправны
+\subsection{Пример}
+\[
+	y' = \frac{1}{yx + y^2}
+	.\]
+\[
+	\frac{dx}{dy} = yx + y^2
+	.\]
+уравнение линейное по $x$. Иногда полезно перевенуть уравнение
+\subsection{Смысл записи в полных дифференциалах}
+Для тех точек, где $N(x,y) \neq 0$ мы считаем что это уравнение тоже самое что
+\[
+	\frac{dy}{dx} = \frac{M(x,y)}{N(x,y)}
+	.\]
+Для тех точек, где $M(x,y) \neq 0$ пы считаем по определнию
+\[
+	\frac{dx}{dy} = -\frac{N(x,y)}{M(x,y)}
+	.\]
+Уравнение в полных дифференциалах это объедение такие уравнений.
+
+Если $M = N = 0$ считаем что уравнение не определно и такие точки выкидыватся из области определения
+\begin{definition}
+	$(x_0,,y_0)$ такие что  $M(x_0,y_0) = N(x_0,y_0) - 0$. О
+\end{definition}
+\[
+	M(x,\phi(x))x + N(x,\phi) d\phi(x) =
+	(M(x,\phi(x))) + \phi'(x) N(x,\phi(x)))dx
+	.\]
+\begin{lemma}
+	Пусть $u \in C^{1}(D)$ $\exists U'_{x}, U'_{y} \in C(G)$ хотя бы одна из частных производных не равняетчя 0, тогда  $U(x,y) = 0$ задает регулярную кривую
+\end{lemma}
+\begin{proof}
+	\[
+		\forall  (x_0,y_0) : U(x_0,y_0) = 0
+		.\]
+	\[
+		(x_0,y_0) \in U^{-1}(0) := \{(x,y) \mid U(x,y) = 0\}
+		.\]
+	Пусть $U'_{y}(x_0,y_0) \neq 0$ по теореме о неявной функции тогда $\exists ! y = \phi(x)$ $x \in (x_0-\delta,x_0 + \delta), \phi \in C_1$
+\end{proof}
+\section{Уравнения, сводящиеся к однородным}
+\subsection{}
+\[
+	y' = f(ax + by)
+	.\]
+\[
+	(x,y) \to (x,z),~ z = ax + by
+	.\]
+\[
+	z' =a + by' = a + bf(ax + by) = a+ bf(z)
+	.\]
+\subsubsection{Ф 65}
+\[
+	y' = \sqrt{4x + 2y - 1}
+	.\]
+\[
+	(x,y) \to (x,z) , z=4x + 2y - 1
+	.\]
+\[
+	z' = 4 + 2y' = 4 + 2\sqrt{z}
+	.\]
+\[
+	\frac{dz}{d} = 4 + 2\sqrt{z}
+	.\]
+\[
+	\frac{dz}{2 + 1\sqrt{z} }= 2dx
+	.\]
+\[
+	\int \frac{dz}{2 + \sqrt{z} }
+	.\]
+\[
+	t = 2 + \sqrt{z}
+	.\]
+\[
+	z = (t - 2)^2
+	.\]
+\[
+	dz =  2(t-2)dt
+	.\]
+\[
+	\int \frac{2(t - 1)}{t} dt = t - 2 \ln{|t|} = x+c
+	.\]
+\[
+	2 + \sqrt{z}  - 2\ln{(2 + \sqrt{z} )}=  x+ c
+	.\]
+\[
+	2 + \sqrt{(4x + 2y -1) } - 2\ln{(2 + \sqrt{4x + 2y - 1} )} = x +c
+	.\]
+\subsection{Еще какаято ебанина}
+\[
+	y' = f(\frac{a_1x + b_1y + c}{a_2 x + b_2 y + c_2})
+	.\]
+Если $c_1= c_2 = 0$ такое уравнение является однородным. Каждая хуйня из дроби задает уравнение прямой. $(x_0,y_0)$ точка пересечения, нужен паралельный пернос, чтоб она стала $(0,0)$
+\[
+	(x,y) \to (u,v)
+	.\]
+\[
+	\begin{cases}
+		u = x-x_0 \\
+		v = y - y_0
+	\end{cases}
+	.\]
+\[
+	du = dx
+	.\]
+\[
+	dv = dy
+	.\]
+\[
+	\frac{dv}{du} = f (\frac{a_1 u + b_1 v}{a_2 u + b_2 v})
+	.\]
+коээфициенты не меняются так как нормаль не меняется при параллельном переносе.\\
+Если прямые паралельны то
+\[
+	a_2 = k a_1
+	.\]
+\[
+	b_2 = k b_1
+	.\]
+Задача сводитя к прошлой
+\subsubsection{Ф 118}
+\[
+	y' = 2 (\frac{y + 2}{x + y -1}) ^2
+	.\]
+\[
+	\begin{cases}
+		y = -2 \\
+		x = 3
+	\end{cases}
+	.\]
+\[
+	\begin{cases}
+		u = x - 3 \\
+		v = y + 2
+	\end{cases}
+	.\]
+\[
+	\frac{dv}{du} = 2 (\frac{v}{u + v})^2
+	.\]
+\[
+	(u,v) \to (u,z)
+	.\]
+\[
+	v = zu
+	.\]
+\[
+	(zu)' = u + uz' = 2(\frac{zu}{u + zu})^2 = 2 (\frac{z}{1 + z}) ^2
+	.\]
+\subsection{ф 113}
+\[
+	(2x - 4y + 6) dx + (x + y -3) dy = 0
+	.\]
+\[
+	\begin{pmatrix}
+		1 & 1  & \vline & 3  \\
+		1 & -2 & \vline & -3 \\
+	\end{pmatrix}
+	\to
+	\begin{pmatrix}
+		1 & 1  & \vline & 3  \\
+		0 & -3 & \vline & -6
+	\end{pmatrix}
+	.\]
+\[
+	(1,2)
+	.\]
+\[
+	\begin{cases}
+		u = x - 1 \\
+		v = u - 2
+	\end{cases}
+	.\]
+\[
+	(2 u - 4 v) d u + (u + v) dv = 0
+	.\]
+\[
+	(u,v) \to (u,z)
+	.\]
+\[
+	v = zu
+	.\]
+\[
+	(2u - 4zu) du + (u + uz) d(uz) = 0
+	.\]
+\[
+	(2u - 4zu) du + u^2(1 + z) dz + u(z + z^2) du= 0
+	.\]
+$u = 0 $ не реш
+\[
+	.\]
+\section{}
+\[
+	M(x,y) dx + N(x,y) dy = 0
+	.\]
+Эта хуйня тоже самое что
+\[
+	\frac{dy}{dx} = \frac{M(x,y)}{N(x,y)} \land \frac{dx}{dy} = - \frac{N(x,y)}{M(x,y)}
+	.\]
+\[
+	y = \phi(x)
+	.\]
+\[
+	x = \psi(y)
+	.\]
+\[
+	U(x,y) = 0
+	.\]
+\[
+	|U'_{x}| + |U'_{y}|  \neq 0
+	.\]
+Неявное решение задания решения
+\begin{definition}
+	Пусть $M,N \in C(G), G \subset \mathbb{R}^2, |M|+|N| \neq 0$ в $G$ \\
+	Пусть $U \in C^{1}(G)$
+	\begin{enumerate}
+		\item
+		      \begin{equation}
+			      |U'_{x} | + |U'_{y} | \neq 0
+		      \end{equation}
+		\item
+		      \begin{equation}
+			      U'_{x} N - U'_{y} M \equiv 0
+		      \end{equation}
+	\end{enumerate}
+	Тогда $U(x,y)$ называется интегралом ДУ
+\end{definition}
+\begin{theorem}
+	Пусть $U(x,y)$ интеграл дифференциального уравнения тогда
+	\begin{enumerate}
+		\item Формула $U(x,y) = c$\label{6} задает множество всех решений
+		\item  $G$ область существования и единственности
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$\forall $ кривая задаваемая \ref{6} удовлетворяет условиям леммы. Пусть $\gamma$
+	регулярная кривая, задааваема  $U(x,y) =  c$ , либо  $U'_{x} \neq 0$, либо $U'_{y} \neq 0$
+	\begin{enumerate}
+		\item Пусть $U'_{y} \neq 0 \implies$
+		      \[
+			      y = \phi(x)
+			      .\]
+		      \[
+			      U(x,\phi(x)) \equiv c
+			      .\]
+		      \[
+			      \frac{d}{dx} U(x,\phi(x)) \equiv 0
+			      .\]
+		      \[
+			      U'_{x}(x,\phi(x)) + U'_{y}(x,\phi(x)) \phi'(x) \equiv 0
+			      .\]
+		      \[
+			      \phi'(x) \equiv - \frac{U'_{x} (x,\phi(x))}{U'_{y} (x,\phi(x))}
+			      .\]
+		      Покажем,ч то $N(x,\phi(x)) \neq 0$. Предположим обратное
+		      \[
+			      0 - U'_{y} M = 0
+			      .\]
+		      значит $M = 0$ получается полная фигня. Тогда
+		      \[
+			      \frac{U'_{x}}{U'_{y}} \equiv \frac{M}{n}
+			      .\]
+		      \[
+			      \phi'(x) = - \frac{M(x,\phi(x))}{N(x,\phi(x))}
+			      .\]
+		\item  $U'_{x} \neq 0$
+		      \[
+			      U(\psi(y),y) \equiv 0
+			      .\]
+		      Взяли производную
+		      \[
+			      U'_{x}(\psi(y),y)\psi'(y) + U'_{y}(\psi(y),y) \equiv 0
+			      .\]
+		      \[
+			      \psi =  - \frac{U'_{y}(\phi,y)}{U'_{x}(\phi,y)}
+			      .\]
+		      \[
+			      M(\psi(y),y) \neq 0
+			      .\]
+		      \[
+			      \psi'(y) \equiv - \frac{N(\phi(y),y)}{M(\psi,y)}
+			      .\]
+	\end{enumerate}
+	Теперь доказываем второй пункт. Берем $\forall (x_0,y_0) \in G$ и $\exists !$ решение, проходяшее через $(x_0,y_0)$
+	\[
+		U(x,y) = C
+		.\]
+	Если это решение локально представимо в виде $y = \phi(x)$, то $y_0 = \phi(x_0)$
+	\[
+		U(x,\phi(x)) \equiv c
+		.\]
+	\[
+		U(x,y) = U(x,0)
+		.\]
+\end{proof}
+Перейдем к уравнениям в полных дифференциалах
+\section{УПД}
+\begin{definition}
+	\[
+		M(x,y) dx + N(x,y) dy = 0
+		.\]
+	Называется уравнением в полных дифференциалилах, если существует $U \in C^{1}(G)$
+	\[
+		M = U'_{x}
+		.\]
+	\[
+		N = U'_{y}
+		.\]
+\end{definition}
+\begin{theorem}
+	Пусть уравнение в полных дифференциалах, тогда $U$ интеграл
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item $|U'_{x}| + |U'_{y}|  = |M| + |N| \neq 0$ если оба ноль, то мы такое не рассматриваем
+		\item
+		      $U'_{x} N - U'_{y} M = M N - N M = 0$
+	\end{enumerate}
+\end{proof}
+\begin{corollary}
+	Формула $U(x,y) = c$ все решения в обобщеном смысле
+\end{corollary}
+\begin{corollary}
+	G - облатсь существования и единственности
+\end{corollary}
+\begin{theorem}[Критерий УПД]
+	Пусть $M,N \in C(G)$ ,  $\exists M'_{y}, N'_{x} \in C(G)$, Тогда
+	\begin{enumerate}
+		\item уравнение УПД $\iff$  $M'_{y} \equiv N'_{x}$ (необходимое условие упд)
+		\item Если $G$ выпуклая прошлый пунк достаточное условие
+	\end{enumerate}
+\end{theorem}
+\section{Обобщеннo однородные уравния}
+\[
+	y' = f(x,y)
+	.\]
+\[
+	(x,y) \to (\lambda x, \lambda y)
+	.\]
+квазирастяжение
+\[
+	(x,y) \to (\lambda^{\alpha}  x , \lambda^{\beta} y)
+	.\]
+\[
+	\begin{cases}
+		x = \lambda^{\alpha} x_0 \\
+		y = \lambda^{\beta} x_0
+	\end{cases}
+	\lambda > 0
+	.\]
+перейдем к уравнению в явной форме
+\[
+	\lambda = (\frac{x}{x_0})^{\frac{1}{\alpha}}
+	.\]
+\[
+	y = (\frac{x}{x_0})^{\frac{\beta}{\alpha}} y_0
+	.\]
+Пусть $c = \frac{y_0}{x_0^{\frac{\beta}{\alpha}}}$
+\begin{definition}
+	Уравнение называется ООУ (Квази ОУ) , если существует
+\end{definition}
+\[
+	2x^4 y y' + y^{4} = 4x^{6}
+	.\]
+\[
+	x \to \lambda^{\alpha} x
+	.\]
+\[
+	y \to \lambda^{\beta} y
+	.\]
+\[
+	\lambda^{4\beta} = \lambda^{4\alpha}
+	.\]
+надо делать замену $z = \frac{y^{\alpha}}{x^{}}$
+\section{Теорема}
+\begin{theorem}
+	\[
+		M dx + N dy = 0
+		.\]
+	\[
+		M, N \in C(G)
+		.\]
+	\[
+		\exists  M'_{y} ,N'_{x} \in C(G)
+		.\]
+	Тогда Уравнение упд $\implies$  $M_{y}' \equiv N_{x}'$ \\
+	Если $G$ -- выпуклая то прошлое еще и достаточное условие.
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item Необходимость\\
+		      Пусть уравнение упд значит
+		      \[
+			      \begin{cases}
+				      M = U_{x}' \\
+				      N = U_{y}'
+			      \end{cases}
+			      .\]
+		      \[
+			      \begin{cases}
+				      M_{y}' = U''_{xy} \\
+				      N_{x}' = U''_{yx}
+			      \end{cases}
+			      .\]
+		      Значит $M_{y}' \equiv N_{x}'$
+		\item Достаточность\\
+		      Ищем функцию $U(x,y)$ в явном виде.
+		      \[
+			      \begin{cases}
+				      U'_{x} = M \\
+				      U'_{y} = N
+			      \end{cases}
+			      .\]
+		      Первое уравнение интегрируем по $x$, тогда
+		      \[
+			      U(x,y) = \int_{x_0}^{x} M(s,y) ds + c(y)
+			      .\]
+		      Подбираем $c(y)$
+		      \[
+			      (  \int\limits_{x_0}^{x} M(s,y) ds + c(y) )' = N(x,y)
+			      .\]
+		      \[
+			      (\int\limits_{x_0}^{x} M(s,x) ds )'_{y} + c'(y) = N(x,y)
+			      .\]
+		      \[
+			      \int\limits_{x_0}^{x}  M(s,y)  sd = F(x,y)
+			      .\]
+		      \[
+			      F'(x,y)_{y} = \int\limits_{x_0}^{x} M'_{y} (s,y)ds
+			      .\]
+		      \[
+			      \int\limits_{x_0}^{x} M'_{y} (s,y) ds + c'(y) = N(x,y)
+			      .\]
+		      \[
+			      \int\limits_{x_0}^{x}  N'_{x}(s,y)ds + c'(y) = N(x,y)
+			      .\]
+		      \[
+			      N(x,y) - N(x_0,y) + c'(y) = N(x,y)
+			      .\]
+		      \[
+			      c'(y) = N(x_0,y)
+			      .\]
+		      \[
+			      c(y) = \int\limits_{y_0}^{y} N(x_0,t) dt
+			      .\]
+		      Без константы, тк нам надо найти тоько одну такую функцию.
+		      \[
+			      U(x,y) = \int\limits_{x_0}^{x}  M(s,y)  ds + \int\limits_{y_0}^{y} N(x_0,t) dt
+			      .\]
+	\end{enumerate}
+\end{proof}
+\section{Общие теоремы для систем дифференциальных уравнений}
+\subsection{Основные понятия}
+\begin{definition}
+	Системой дифференциальных уравнений, разрешенных относительно старших производных,
+	называется следущая система
+	\[
+		y_1^{(n_1)} (x) = f_1(x,y_1,y_1',y_1^{(n_1 - 1)},y_2,\dots,y_{2}^{( n_2-1 )},\dots,y_{m},\dots,y_{m}^{n_{m} - 1})
+		.\]
+	\[
+		y_2^{(n_2)} = f_2(\text{тоже самое что и прошлом})
+		.\]
+	\[
+		\dots
+		.\]
+	\[
+		y_{m}^{(n_{m})} = f_{m} (\text{тоже самое что и в прошлом})
+		.\]
+	где x независимая переменнная, $y_1(x),\dots,y_{m}(x)$ неизвестные функции.
+	Решить систему, найти эти функциии. ,$n_1,\dots,n_{m}$ порядки старших производных
+	\[
+		n = n_1 +  \dots + n_{m}~  \text{порядок сду}
+		.\]
+	Важные случаи
+	\begin{enumerate}
+		\item \[
+			      m=1,n_1 = n
+			      .\]
+		      Это диффур n-го порядка
+		      \[
+			      y^{(n)} = f(x,y,y',\dots,y^{( n-1 )})
+			      .\]
+
+		\item
+		      \[
+			      n_1 = \dots = n_{m} = 1, n =m
+			      .\]
+		      Нормальная система
+		      \[
+			      \begin{cases}
+				      y'_{1} =  f_1(x_1,y_1,\dots,y_{n}) \\
+				      y_2' = f_2(x_1,y_1,\dots,y_{n})    \\
+				      \dots                              \\
+				      y_{n}' = f_n(x_1,y_1,\dots,y_{n})  \\
+			      \end{cases}
+			      .\]
+	\end{enumerate}
+\end{definition}
+\begin{lemma}
+	Любая система дифференциальных уравний может быть записана в виде эквивалентной нормальной системы
+\end{lemma}
+\begin{proof}
+	Начинаем с частного случая. Диффур n-го порядка записываем в виде нормальной системы. ВВедем новые переменные $z_1,\dots,z_{n}$
+	\[
+		\begin{cases}
+			z_1 = y  \\
+			z_2 = y' \\
+			\dots    \\
+			z_{n} = y^{(n - 1)}
+		\end{cases}
+		.\]
+	\[
+		\begin{cases}
+			z_1' = y' = z_2 \\
+			z_2' = y''= z_3 \\
+			\dots           \\
+			z_{n}' = y^{(n)} = f(x,z_1,z_2,\dots,z_{n})
+		\end{cases}
+		.\]
+	Убедимся в сущ биекции между решениями. Если $y =  \phi(x)$ тогда
+	\[
+		z_1 = \phi(x), z_2 = \phi'(x) ,\dots,z_{n} = \phi^{(n-1)}(x)
+		.\]
+	Обратно
+	\[
+		z_1= \phi_1(x),\dots,z_{n} = \phi_{n}(x)
+		.\]
+	то  $y =\phi'(x)$
+	\[
+		\phi_{k+1}(x) = \phi'_{k}(x)
+		.\]
+	\[
+		\phi'_{n} = \phi^{(n)}(x) = f(x,\phi_1,\dots,\phi_{n}) = f(x,\phi_1,\dots,\phi_1^{(n-1)})
+		.\]
+	Теперь общий случай.
+	\[
+		y_{k}, y'_{k},\dots,y^{(n_{k} - 1)}_{k}
+		.\]
+	берем  в качестве новых переменнных
+\end{proof}
+\subsection{Векторная запись нормальной системы дифференциальных уравнений}
+\[
+	y(x)  = \begin{pmatrix}
+		y_1(x) \\
+		\dots  \\
+		y_{n(x)}
+	\end{pmatrix}
+	.\]
+\[
+	<a,b> \to \mathbb{R}^{n}
+	.\]
+\[
+	y(x) \in C(<a,b>) := \forall  y_{k}(x) \in C(<a,b>), k=1\dots n
+	.\]
+\[
+	y(x) \in C^{1}(<a,b>) := \forall  y_{k} \in C^{1}(<a,b>)
+	.\]
+\[
+	y'(x) := \begin{pmatrix}
+		y'(x) \\
+		\dots \\
+		y'_{n}(x)
+	\end{pmatrix}
+	.\]
+\[
+	\int\limits_{a}^{b} y (x)  dx := \begin{pmatrix}
+		\int\limits_{a}^{b} y_1(x)   dx \\
+		\dots                           \\
+		\int\limits_{a}^{b} y_{k} (x) dx
+	\end{pmatrix}
+	.\]
+\[
+	f(x,y) := \begin{pmatrix}
+		f_1(x_1,y_1,\dots,y_{n}) \\
+		\dots                    \\
+		f_{n}(x,y_1,\dots,y_{n})
+	\end{pmatrix}
+	.\]
+\[
+	y(x)' = f(x,y)
+	.\]
+векторная система нормальной системы\\
+Вводим переобозначения
+\[
+	x \to t
+	.\]
+\[
+	y \to x \text{-- это набор координат}
+	.\]
+\[
+	y(x) \to x(t)
+	.\]
+\[
+	y' = \dot{x}
+	.\]
+\[
+	\dot{x} = f(t,x)
+	.\]
+\[
+	G \subset \mathbb{R}^{n =1}
+	.\]
+\[
+	f \in C(G)
+	.\]
+\begin{definition}
+	\[
+		\phi(t) : <a,b> \to \mathbb{R}^{n}
+		.\]
+	называется решением нормальным решением если
+	\begin{enumerate}
+		\item \[
+			      \phi \in C^{1}(<a,b>)
+			      .\]
+		\item
+		      \[
+			      \Gamma_{\phi} \subset G
+			      .\]
+		\item \[
+			      \dot{\phi(t)} \equiv f(t,\phi(t)) \text{на} <a,b>
+			      .\]
+	\end{enumerate}
+\end{definition}
+Задача Коши.
+\[
+	(t_0,x_{0}) \in F
+	.\]
+\[
+	\begin{cases}
+		\dot{x} = f(t,x) \\
+		x(t_0) = x_0
+	\end{cases}
+	.\]
+\subsection{Единственность решения задачи коши}
+$(t_0,x_0) \in G$ называется единсвтенной, если $\exists  U(t_0,x_0)$ такая что любые две инетгральные кривые, проходящие через $t_0,x_0$ в этой окрестности $U$ совпадают.
+\section{Поле направлений. Ломанные направлений. Теорема Пеано}
+Рассматриваем нормальную систему диффуров
+\[
+	\dot{x} = f(t,x)
+	.\]
+\[
+	f: G \to \mathbb{R}^{n}
+	.\]
+\[
+	G \subset \mathbb{R}^{n+1} \text{область}
+	.\]
+\[
+	f \in C(G)
+	.\]
+\subsection{Поле направлений}
+\[
+	(t_0,x_0) \in G
+	.\]
+Пусть  $\phi(x_0) = t_0$ решениe системы. Само решение $\phi$ неизвестно, но
+мы легко можем написать уравнение касательной к  $\phi$ в  $t_0$
+\[
+	x = \phi(t_0) + \dot{\phi}(t_0) (t - t_0)
+	.\]
+\[
+	\dot{\phi}(t_0) = f(t_0,\phi(t_0)) = f(t_0,x_0)
+	.\]
+\[
+	x = x_0 + f(t_0,x_0)(t -t_0)
+	.\]
+выписано в явном виде.
+\begin{definition}[Поле направлений]
+	Полем направлений называется отображения, которое $\forall  (t_0,x_0) \in G$ сопоставляет касательную прямую, проходящую через эту точку.
+\end{definition}
+Ясно что $\phi$ будет решением  $\iff$  в каждой своей точки касается прямой из поля направлений. Интегральные кривые в каждой точку поля направний  $\implies$ позволяет примерно рисовать их кривые.
+\subsection{Ломанные Эйлера}
+\begin{definition}[Ломанная Эйлера]
+	Ломанной Эйлера называется любая ломанная, звенья которой, лежат на прямых из поля направлений. Апроксимация точной интегральной кривой.
+\end{definition}
+\subsection{Алгоритм построения ломанной Эйлера}
+\[
+	(t_0,x_0) \in G
+	.\]
+Строим лиоманную эйлера на $[t_0.T]$ в лево все аналогично.\\
+Пусть N - число звеньев ребер
+\[
+	\frac{T - t_0}{N} = h ~\text{Шаг}
+	.\]
+Пусть $t_{k} = t_0 + kh$ дробление отрезка $[t_0,T]$ $k = 0\dots N$.
+Линия эйлера строится по реккурентному алгоритму по следущей схеме
+\[
+	l(t) = x_0 + f(t_0,x_0)(t - t_0), [t_0,t_1]
+	.\]
+\[
+	x_1 = l(t_1) = x_0 + f(t_0,x_0)h
+	.\]
+\[
+	l(t) = x_1 + f(t_1,x_1))(t- t_1),  [t_1,t_2]
+	.\]
+\[
+	x_2 = l(t_2)
+	.\]
+Пусть Ломанная Эйлера построена на $[t_0,t_{k}],x_{k} = l(t_{k})$
+\[
+	[t_{k_1} , t_{k + 1}] , l(t) = x_{k} + f(t_{k},x_{k}) (t - t_{k})
+	.\]
+\[
+	\begin{cases}
+		t_{k + 1} = t_{k}  + h \\
+		x_{k + 1} = x_{k} + f(t_{k},x_k)h
+	\end{cases}
+	.\]
+\subsection{Теорема Пеано}
+\begin{theorem}[Пеано]
+	Пусть $f \in C(G)$ тогда  $\forall  (t_0,x_0) \in G$ задача коши
+	\[
+		\dot{x} = f(t,x)\\
+		x(t_0) = 0
+		.\]
+	имеет хотя бы одно решение (определенное на отрезке $[t_0-h,t_0 + h]$ )
+\end{theorem}
+Без доказательства
+\section{Интегральные уравнения}
+\[
+	\dot{x} = f(t,x)
+	.\]
+\[
+	f : G \to \mathbb{R}^{n}, G \subset \mathbb{R}^{n + 1}
+	.\]
+\[
+	f \in C(G)
+	.\]
+Рассмотрим следущее интегральное уравнение.
+\[
+	x(t) = x_0 + \int\limits_{t_0}^{t} f(x,x(s))  ds
+	.\]
+Решить это уравние означает найти $x(t)$
+\begin{definition}
+	$\phi(t)$ называется решением интегральное уравнения на  $<a,b>$
+	\begin{enumerate}
+		\item $\phi \in C(<a,b>)$
+		\item $\Gamma_{\phi} \subset G$
+		\item $\phi(t) \equiv x_0 + \int\limits_{t_0}^{t} f(s,\phi(s)) ds $ на $<a,b>$
+	\end{enumerate}
+\end{definition}
+\begin{theorem}[Об эквивалентность задачи Коши и интегральных уравнений]
+	$\phi(t)$ будет решением задачи коши на промежутке  $\iff$ она решение интегрального уравнения
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item
+		      \begin{enumerate}
+			      \item $\phi \in C^{1} \implies \phi \in C$
+			      \item Все понятно
+			      \item
+			            \[
+				            \dot{\phi}(t) \equiv f(t,\phi(t)) \implies
+				            \int\limits_{t_0}^{t} \dot{\phi}(s) dt = \int\limits_{t_0}^{t} f(s,\phi(s)) ds
+				            .\]
+			            \[
+				            \phi(t) - \phi(t_0) = \int\limits_{t_0}^{t} f(s,\phi(s)) ds
+				            .\]
+		      \end{enumerate}
+		\item
+		      $\phi \in C \implies f(s,\phi(s)) \in C \implies \int\limits_{t_0}^{t} f(s,\phi(s)) ds \in C^{1}  $
+		\item Понятно
+		\item
+		      \[
+			      \phi(t) \equiv x_0 + \int\limits_{t_0}^{t} f(s,\phi(s)) ds \implies \phi \in C^{1}
+			      .\]
+        \item 
+            \[
+            \phi(t) \equiv x_0 + \int\limits_{t_0}^{t}   f(s,\phi(s)) ds
+            .\] 
+            \[
+                \dot{\phi}(x)  \equiv 0 + f(t,\phi(t))
+            .\] 
+            Начальное условие $\phi(t_0) = x_0$
+	\end{enumerate}
+\end{proof}
+\section{Условие Липщица}
+\[
+f : G \to \mathbb{R}^{n}
+.\] 
+\[
+G \subset \mathbb{R}^{n+1}
+.\] 
+\begin{definition}
+    f удовлетворяет условию липшица по переменной x в области $G$  c константой L
+    \[
+    \forall  (t,x_1),  (t,x_2) \in G
+    .\] 
+    \[
+    ||f(t,x_1) - f(t,x_2)|| \le  L||x_1-x_2||
+    .\] 
+\end{definition}
+\subsection{Комментарий}
+f растет не быстрее линейной функции
+\begin{lemma}
+    для f выполняется условие липщица $\iff$  $f \in C^{0}_{x}(G)$
+\end{lemma}
+\begin{proof}
+    \[
+    ||f(t,x_1) - f(t,x_2)|| < \epsilon
+    .\] 
+    \[
+    \delta = \frac{\epsilon}{L}
+    .\] 
+    \[
+    ||f(t,x_1) - f(t,x_2)|| \le  L||x-x_2|| < \delta L
+    .\] 
+\end{proof}
+\begin{definition}[Равномерная непрерывность]
+    \[
+    \forall  ~ \epsilon > 0 \exists  \delta =\delta(\epsilon), \forall  (t,x_1),(t,x_2) \in G ||x_1-x_2|| <\delta
+    .\] 
+\end{definition}
+\begin{theorem}
+    Пусть $\exists  f'_{x} \in C(G) \iff ~ \forall $ шара из $G$, для f выполняется условие липщица в B по x
+\end{theorem}
 \end{document}

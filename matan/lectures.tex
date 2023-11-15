@@ -1,5 +1,4 @@
-\documentclass[14pt]{extarticle}
-\usepackage{fontspec}
+\documentclass[14pt]{extarticle} \usepackage{fontspec}
 \usepackage[russian, english]{babel}
 \setmainfont{Times New Roman}
 \usepackage{amssymb}
@@ -9,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{indentfirst}
+\usepackage{pgfplots}
 \setlength{\parindent}{1.25cm}
 \usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
 \newtheorem{theorem}{Теорема}
@@ -439,14 +439,665 @@ f(x_0 + h) - f(x_0) f'(x_0) h + o(h)
 \begin{theorem}[О полном приращении]
     Пусть функция $f$ задана на  $X \subset \mathbb{R}^{2}$, a внутренняя точка $X$, $a = (x_0,y_0)$.  Пусть $f$ имеет частную производную во всех точках в некоторой окрестности точки  $a$. Пусть эти частные производные непрерывны в точке a. Тогда вблизи точки a имеет место
      \[
-    f(x,y) - f(x_0,y_0) = \partial_{x} f (x_0,y_0) (x_0 - y_0) + \partial_{y} (x_0,y_0) (y - y_0) + \alpha(x,y) (x - x_0) + \beta(x,y) (y - y_0)
+    f(x,y) - f(x_0,y_0) = \partial_{x} f (x_0,y_0) (x_0 - y_0) + \partial_{y}f (x_0,y_0) (y - y_0) + \alpha(x,y) (x - x_0) + \beta(x,y) (y - y_0)
     .\] 
-    $\alpha,\beta$ бесконечно малые в  $(x_0,y_0)$
+    $\alpha,\beta$ бесконечно малые в  $(x_0,y_0)$\\
+    Обозначим $h = x - x_0, k = y-y_0$
+    \[
+        f(x_0 + h) + g(x_0 + k) = \partial_{x} f(x_0,y_0) h + \partial_{y} f(x_0,y_0) k
+        + \alpha(h,k)h - \beta(h,k)k
+    .\] 
+    $\alpha,\beta$ бесконечно малые в  $(0,0)$
 \end{theorem}
 \begin{proof}
-    
+    \[
+    f(x_0 + h,y_0 + k) - f(x_0,y_0) = ( f(x_0 + h,y_0 +k)  - f(x_0,y_0 + k) ) +
+    (f(x_0,y_0 + k) - f(x_0,y_0)
+    .\] 
+    \[
+        g(x) = f(x,y_0+k)
+    .\] 
+    \[
+    g(x_0 + h) - g(x_0)
+    .\] 
+    По теореме Лагранжа
+    \[
+    g(x_0 + h) - g(x_0) = g'(c)h = \partial_{x}f(c,y_0 + h) h
+    .\] 
+    \[
+        g(y) = f(x_0,y)
+    .\] 
+    \[
+    g(y_0 + k) - g(y_0) = g'(d) k = \partial_{y} g(x_0,d) k
+    .\] 
+    \[
+        f(x_0 + h,y_0 +k) -f(x_0,y_0) =      .\] 
+    \[
+    \partial_{x} f(x_0,y_0) h + \partial_{y} f(x_0,y_0) k + (\partial_{x} f(x,y_0+k) - \partial_{x} f(x_0,y_0))h + (\partial_{y}f (c,y_0 + k) = \partial_{y}f(x_0,y_0))k
+    .\] 
 \end{proof}
 \begin{definition}[Дифференцируемость функции нескольких переменных]
-    
+    Пусть $f : X \to \mathbb{R}$, $X \subset \mathbb{R}^{2} , a = (x_0,y_0) \in \mathbb{R}^2$ внутренняя
+    $f$ дифференцируема в точке  $a$ , если , $\exists A,B \in \mathbb{R}$ и функции  $\alpha(x,y), \beta(x,y)$ бесконечно малые в  $(x_0,y_0)$ и вблизи $(x_0,y_0)$ имеет место равенство
+    \[
+    f(x,y) -  f(x_0,y_0) = A (x - x_0) + B(y-y_0) + \alpha(x,y) (x - x_0)  + \beta(x,y) (y - y_0)
+    .\] 
 \end{definition}
+\begin{theorem}
+    Если f дифференцируема в $(x_0,y_0)$, то $A = \partial_{x} f(x_0,y_0)$ , $B = \partial_{y} f(x_0,y_0)$
+\end{theorem}
+\begin{proof}
+    Подставим $y = y_0$ 
+    \[
+    f(x,y_0) - f(x_0,y_0) = A(x - x_0) + \alpha(x,y_0) (x - x_0)
+    .\] 
+    \[
+    \forall  x \neq x_0
+    .\] 
+    \[
+    \frac{f(x - y_0) - f(x_0,y_0)}{x - x_0} = A + \alpha(x,y_0)
+    .\] 
+    \[
+    \frac{\partial f}{\partial x} (x_0,y_0) = \lim_{x \to x_0} \frac{f(x,y_0) - f(x_0,y_0)}{x - x_0} = \lim_{x \to 0} (A + \alpha(x)) =A
+    .\] 
+\end{proof}
+\begin{theorem}
+    \[
+        f: X \to \mathbb{R}, a  = (x_0,y_0) \in X, \vec{l} = (l_1,l_2) ,||l|| = 1
+    .\] 
+    Пусть f дифференцируема в точке a, тогда $\exists \frac{\partial f}{\partial \vec{l}} (a)$ 
+    \[
+    \frac{\partial f}{\partial \vec{l}} (a) = \frac{\partial f}{\partial x} (x_0,y_0) l_1 +  \frac{\partial f}{\partial y} (a) l_2
+    .\] 
+     \[
+    \grad f_{(x_0,y_0)} =  (\frac{\partial f}{\partial x} (x_0,y_0), \frac{\partial f}{\partial y} (x_0,y_0))
+    .\] 
+\end{theorem}
+\begin{proof}
+        \[
+        f(x_0 + hl_1, y + k l_2) - f(x_0,y_0) = 
+        .\] 
+    \end{proof}
+\section{Направление наибольшего возрастания функции}
+\[
+- ||\vec{a},\vec{b}|| \le |(\vec{a},\vec{b})| \le ||\vec{a}|| ||\vec{b}||
+.\] 
+$\vec{l}$ направление наибольшего возрастания, если $\vec{l} = \frac{1}{||\grad(f(x_0,y))||} \grad(f(x_0,y_0)$
+\section{}
+\[
+y' (3y^2) + y' + 1 = 0
+.\] 
+\[
+y' (3y^2 + 1) = -1
+.\] 
+\[
+y' = - \frac{1}{3y^2 + 1}
+.\] 
+\[
+y^3(-2) + y(-2) -2 = 0
+.\] 
+\[
+y(-2) = 1
+.\] 
+\section{}
+\[
+    y^2 + y - x = 0
+.\] 
+\[
+y = \frac{-1 \pm \sqrt{1 + 4x} }{2}
+.\] 
+\begin{theorem}
+    \[
+    f : X \subset \mathbb{R}^2 \to \mathbb{R}
+    .\] 
+    X -- открытое множество.
+    \[
+    x,y: I \to \mathbb{R}
+    .\] 
+    I -- открытый промежуток
+    \[
+    t \in T
+    .\] 
+    \[
+    t \to x(t)
+    .\] 
+    \[
+    t \to y(t)
+    .\] 
+    \[
+    F(t) = f(x(t),y(t))
+    .\] 
+    Пусть $x(t),y(t)$ дифференцируемы в точке $t_0$из I, f дифференцируема  в точке $(x(t_0),y(t_0))$
+    \[
+    F'(t_0) = \partial_{x}f (x(t_0),y(t_0)) x'(t_0) + \partial_{y} (x(t_0),y(t_0)) y'(t_0)
+    .\] 
+\end{theorem}
+\begin{proof}
+    \[
+    F'(x_0) = \lim_{t \to t_0}  \frac{F(t) -F(t_0)}{t - t_0}
+    .\] 
+    \[
+    F(t) - F(x_0) = f(x(t),y(t)) - f(x(t_0),y(t_0))
+    .\] 
+\end{proof}
+\begin{theorem}
+    \[
+    f : X \subset \mathbb{R} \to \mathbb{R}
+    .\] 
+    X - открытое множество, f дифференцируема на $X$. Пусть  $(x_0,y_0), (x,y) \in X$ 
+    \[
+    f(x,y) - f(x_0,y_0) = \partial_{x} f(c_1,c_2) (x - x_0) + \partial_{y} f(c_1,c_2)(y - y_0)
+    .\] 
+\end{theorem}
+\begin{proof}
+    \[
+    f(x_0 + t(x - x_0),y_0 + t(y-y_0)) - f(x_0,y_0) - f(x_0,y_0)
+    .\] 
+\end{proof}
+\begin{corollary}
+    Пусть X выпуклое. Пусть $\partial_{x} f, \partial_{y}f$ тождественно равны 0. Тогда f постоянна
+\end{corollary}
+\begin{corollary}
+    Пусть X область (открытое связное множество)
+\end{corollary}
+\section{К. 3.60}
+\subsection{}
+\[
+3u^2 \partial_{x} u + 3y(u + x \partial_{x} u) = 0
+.\] 
+\[
+y^2 \partial_{x} u + yu + yx \partial u = 0
+.\] 
+\[
+\partial_{x} u (u^2 + xy) = - yu
+.\] 
+\[
+3 u^2 \partial_{y} x
+.\] 
+\subsection{}
+\[
+\partial_{x} u  e^{u} - y(x + x \partial_{x} u) = 0
+.\] 
+\[
+e^{u(1,0)} = 2
+.\] 
+\[
+    u = \ln{2}
+.\] 
+\[
+\partial_{x} u (e^{u}  - yx) - yx  = 0
+.\] 
+\[
+2 \partial_{x} u = 0
+.\] 
+\section{}
+\[
+    u + \ln{(x + y + u)} = 0
+.\] 
+\[
+    u'_{x}  (1 + u'_{x}) \frac{1}{x + y+ u} = 0
+.\] 
+\[
+u'_{y} + (1 + u'_{y}) \frac{1}{x + y +u} = 0
+.\] 
+\[
+u'_{x} + \frac{1}{x + y + u} + \frac{u'_{x}}{x + y + u} = 0
+.\] 
+\[
+    (1 + \frac{1}{x + y + u}) u'_{x} = -\frac{1}{x + y + u}
+.\] 
+\[
+    u(1,-1) + \ln{u(1,-1)} = 0
+.\] 
+\[
+t = u(1,-1)
+.\] 
+\[
+    t + \ln{t} = 0
+.\] 
+\section{Теорема о неявной функции}
+\begin{theorem}
+    Пусть $(x_0,y_0) \in \mathbb{R}^2$, $U$ окретсность точки  $(x_0,y_0)$, пусть функция $F : U \to \mathbb{R}$ Пусть выполняются условия
+    \begin{enumerate}
+        \item F непрерывно дифференцируема в $U$
+        \item  $F(x_0,y_0) = 0$
+        \item $F'_{y} (x_0,y_0) \neq 0$
+    \end{enumerate}
+    Тогда существует открытый промежуток $I_{x} \times I_{y}$, $I_{x}$ окретсность $x_0$,  $I_{y}$ окрестность $y_0$
+    \[
+        I_{x} =  \{x | |x- x_0| <\alpha\}
+    .\] 
+    \[
+        I_{y} = \{y \mid |y-y_0| < \beta\}
+    .\] 
+    Которые лежат в $U$ и  $\exists f$ заданная на $I_{x}$ принимающая значения $I_{y}$, такая что  $f \in C^{1}(I_{x})$ (непрерывно дифференцируема на $I_{x}$),
+$F(x,y) = 0 \iff y = f(x), $ для  $x \in I_{x}$, $f'(x) = - \frac{F'_{x}(x,f(x))}{F'_{y}(x,f(x))}, \forall  x \in I_{}$
+\end{theorem}
+\begin{proof}
+    Пусть $F$ непрерывно дифференцируема, т.е $F'_{x}, F'_{y}$ непрерывны в  $(x_0,y_0)$, то $F'_{y}(x,y) > 0$ для $(x,y)$ вблизи $(x_0,y_0)$. Рассмотрим $F(x,y_0 -\beta$
+    \[
+    \forall  x \in (x_0 -\alpha,x_0 + \alpha) F(x,y_0 -\beta) <0
+    .\] 
+    \[
+    F(x_0,y_0 + \beta) > 0
+    .\] 
+    то сущестует $\alpha_2 \forall  x \in (x_0 - \alpha_2,x_0 + \alpha_2), F(x,y_0 + \beta) > 0$ Пусть $\alpha = \min{\alpha_1,\alpha_2}$\\
+    Итак м построили $I_{x} \times I_{y}, I_{x} = (x_0 -\alpha,x_0+\alpha), I_{y}= (x_0 -\beta,x_0 + \beta)$
+    \[
+    F'_{y}(x,y) > 0 , (x,y) \in Y
+    .\] 
+    F возрастает значит существует единственное значени $y$, такое что  $F(x,y) =0$
+    Нужно доказать, что $f$ дифференцируема  $(x_0 - \alpha;x+\alpha)$
+\end{proof}
+\subsection {Пример}
+\[
+x^2 + ^2 - 1 = 0
+.\] 
+\[
+\exists U(x_0,y_0)
+.\] 
+\[
+F(x,y) = 0
+.\] 
+Данная функция дифференциуема в точке $(x_0,y_0)$
+\[
+F(x,y) - F(x_0,y_0) = \partial_{x} F(x_0,y_0) (x-x_0) + \partial_{y} F(x_0,y_0)(y - y_0) + \dots
+.\] 
+\[
+    (x_0,y_0) \in C
+.\] 
+\[
+\frac{\partial_{x} F(x_0,y_0)}{\partial_{y} F(x_0,y_0)} + \frac{y - y_0}{x - x_0} = 0
+.\] 
+\section{К 62}
+\[
+ u'_{x} - 4u - 4xu'_{x} = 0
+.\] 
+\[
+ u'_{y} - 4x u'_{y} + 2y = 0
+.\] 
+\[
+u^{3}(1,-2) - 4u(1,-2) = 0
+.\] 
+\[
+    u(1,-2) \in \{0,2,-2\}
+.\] 
+\section{Достаточное условие строгого экстренума}
+\begin{theorem}
+    \[
+        x^{0} = (x_1^{(0)},x_2^{(0)},\dots,x^{(0)}_{n}) \in \mathbb{R}
+    .\] 
+    \[
+        U(x^{(0)}) - \text{Окрестность}
+    .\] 
+    \[
+    f: U(x^{(0)}) \to \mathbb{R}
+    .\] 
+    Пусть
+    \[
+    f \in C^{(2)} (U(x^{(0)}))
+    .\] 
+    По формуле Тейлора
+    \[
+        f(x^{(0)} + h) = f(x^{(0)}) + \frac{1}{2} \sum_{i,j = 1}^{n} \frac{\partial^2 f}{\partial x_{i} \partial x_{j}} (x^{(0)}) h_{i} h_{j} + o(||h||^2)
+    .\] 
+    \[
+    Q(h) = \sum_{i,j = 1}^{n} \frac{\partial^2 f}{\partial x_{i} \partial x_{j}} (x^{(0)}) h_{i} h_{j}
+    .\] 
+    Тогда 
+    \begin{enumerate}
+        \item  если $Q(h)$ положительно определена, то  $x^{(0)}$ точка строгого минимума.
+        \item Если $Q(h)$ отрицательно определена, то  $x^{(0)}$ точка строгого максимума
+        \item если $Q(h)$ принимает значения разных знаков, то  $x^{(0)}$ не является точкой экстренум
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Пусть $h \neq 0$ , $x_0$ критическая точка
+            \[
+            f(x^{(0)}) + ||h^2|| (\frac{1}{2} \sum_{i,j = 1}^{n} \frac{\partial^2 f}{\partial x_{i} \partial x_{j}}) (x_0) (\frac{h_{i}}{||h||} \frac{h_{j}}{||h||} + \alpha(h) )
+            .\] 
+            \[
+            \frac{t_{i}}{||h||}  = t_{i}
+            .\] 
+            \[
+                \sum_{i,j = 1} ^{k} \frac{\partial^2 f}{\partial x_{i} \partial x_{j}} * t_{i} *t_{j}
+            .\] 
+            \[
+                ||t|| \text{- } n \text{мерная сфера радиуса~} 1
+            .\] 
+            Это множество компанктно\\
+            По т Вейрштрасса эта квадратичная форма принимает наибольшее и наименьшее значение
+            \[
+                \sum_{i,j = 1}^{n} \frac{\partial^2 f}{\partial x_{i} \partial x_{j}} t_{i} t_{j}
+            .\] 
+            обозначили их $m,M$
+             \[
+            0 < m \le M
+            .\] 
+            Принимает наименьшее значение равное $\frac{1}{2}m$, тк $\alpha(h)$ бесконечное малое для всех h достаточно близких к 0 $|\alpha(h)| < 0$
+             \[
+            \frac{1}{2} \sum_{i,j = 1}^{n}
+            .\] 
+            Следовательно для всех таких h
+            \[
+            f(x_{0}^{(0)} + h) > f(x^{(0)})
+            .\] 
+            следовательно $x^{0}$ точка минимума
+        \item Аналогично
+        \item  Пусть $e_{m}$ та точка единичной сферы, в которой  квадратичная форма принимает наименьшее значение
+            \[
+            \sum_{i,j = 1}^{n} \frac{\partial ^2 f}{\partial x_{i} \partial x_{j}} (x^{(0)}) t_{i} t_{j}
+            .\] 
+            $e_{M}$ наибольшее значение. Хочу доказать, что в любой окружность $x^{(0)}$ есть значения и больше и меньше.
+            \[
+            h = \lambda e_{m}
+            .\] 
+            \[
+            f(x^{0} + \lambda e_{m}) - f(x^{(0)}) = \frac{1}{2} \sum_{i,j = 1}^{n} 
+            \frac{\partial ^2 f}{\partial x_{i} \partial x_{j}} ( x^{(0)}) \lambda \alpha_{i} \lambda \alpha_{j} + \alpha(||\lambda e_{m} ||^2) = 
+            \frac{1}{2} \lambda^2 (\sum_{i,j}^{n}  \frac{\partial^2 f}{\partial x_{i} \partial x_{j}}) (x^{0})\alpha_i \alpha_{j} + \alpha(\lambda^2 ||e_{m}||) *||e_{m}||^2
+            .\] 
+    \end{enumerate}
+\end{proof}
+\section{Ищем критические точки на границах}
+Пусть $(x_0,y_0)$ тогда экстренум $f(x,y)$ кривой  $g(x,y) = 0$. 
+Тогда  $(f'_{x} (x_0,y_0),f'_{y}(x_0,y_0)$ колинерен $( g'x(x_0,y_0),g'_{y}(x_0,y_0) )$
+\[
+g(x,y) = 0 \implies y = \phi(x)
+.\] 
+\[
+f(x,\phi(x))' = f'_{x}(x,\phi(x))  + f'_{y}(x,\phi(x)) \phi'(x) = 
+f'_{x}(x,\phi(x)) - f'_{y}(x,\phi(x)) \frac{g'_{x}(x,\phi(x))}{g'_{y}(x,\phi(x))} = 0
+.\]
+\[
+\frac{f'_{x}(x,\phi(x))}{f'_{y}(x,\phi(x))} = \frac{g'_{x}(x,\phi(x))}{g'_{y}(x.\phi(x))}
+.\] 
+\section{Задача лагранжа}
+Есть кривая, есть функция
+ \[
+L(x,y,\lambda) = f(x,y) - \lambda g(y)
+.\] 
+\[
+L'_{x}  = f'_{x} - \lambda g'_{x} =  0
+.\] 
+\[
+    L'_{y} = f'_{y} - \lambda f'_{y} = 0
+.\] 
+\[
+L'_{\lambda} = -g(x,y) = 0
+.\] 
+\section{Интеграл фнп}
+\begin{definition}[Разбиение промежутка]
+    Рассмотрим произвол
+\end{definition}
+\begin{definition}[Интегральные суммы]
+    Пусть $I = [a,b] \times [c,d]$. Рассмотрим произвольное разбиение отрезка $[a,b]: a < x_1 < \dots< x_{n - 1} < b$, произвольное разбиение отрезка $[c,d] :
+    c < y_1 < y_2 < \dots < y_{m-1} < d$. Рассмотрим 
+    \[
+        [x_{i -1},x_{i}] \times [y_{j -1},y_{j}]
+    .\] 
+    \[
+        \xi_{i} \in [x_{i - 1},x_{i}]
+    .\]
+    \[
+        \mu_{j}  \in [y_{j -1},y_{j}]
+    .\] 
+    \[
+        (\xi_{i},\mu_{j})  \text{оснащенное разбиение}
+    .\] 
+    \[
+    \Delta x_{i} = x_{i} - x_{i - 1}
+    .\] 
+    \[
+    \Delta y_{j} = y_{j} - y_{j-1}
+    .\] 
+    \[
+    S(f,( \tau,\xi )) = \sum f(\xi_{i},\mu_{j}) \Delta x_{i} \Delta y_{j}
+    .\] 
+\end{definition}
+\subsection{Свойства интегральных сумм}
+\begin{enumerate}
+    \item 
+\[
+S(\alpha f, (\tau,\xi)) = \sum \alpha f( \xi_{i},\mu_{j}) \Delta x_{i} \Delta y_{j}
+.\] 
+\item 
+    \[
+    f,g : I \to \mathbb{R}^2
+    .\] 
+    \[
+    S(f + g, (\tau,\xi)) = \sum f(\xi_{i},\mu_{j}) \Delta x_{i} \Delta y_{j}  +
+    g(\xi_{i},\mu_{j}) \Delta x_{i} \Delta y_{j}
+    .\] 
+\item
+    \[
+    f(x,y) \le g(x,y) \forall  x,y
+    .\] 
+    \[
+    S(f,\tau,\xi) \le  S(g, \tau ,\xi)
+    .\]
+\end{enumerate}
+\[
+    \lambda(\tau,\xi) - \text{наибольшая из сторон прямоугольника}
+.\] 
+\begin{definition}
+    пусть функция f задана на двумерном промежутке $\Pi$. Число  $I$ называется интегралом по промежутку $\Pi$, если для любой последовательнсоти оснащенных разбиений, последовательность рангов стремится к 0 последоватлеьность частичных сумм стремится к I
+\end{definition}
+\begin{theorem}
+    Если функция интегрируема, то она ограничена
+\end{theorem}
+\begin{proof}
+    Пусть функция не ограничена сверху
+\end{proof}
+\[
+\int_{\Pi} f
+.\] 
+\[
+\int_{\Pi} f(x,y) dx dy
+.\] 
+\[
+\sum_{i = 1,\dots n , j = 1 \dots m}
+.\] 
+\section{}
+\[
+    \Delta_{i,j} = [x_{i-1},x_{i}] \times [y_{j-1},y_{j}]
+.\] 
+Ранг разбиения -- наибольшая из длин промежутка разбиения.
+\begin{definition}[Оснащенное разбиение]
+    Оснащенное разбиение - это разбиение в каждом промежутке которого выбрано по точке.
+    \[
+        (\tau,\xi)
+    .\] 
+\end{definition}
+\begin{definition}
+    Пусть  функция задана на промежутке $\Pi$ пусть  $( \tau,\xi)$ оснащенное разбиение промежутка
+    Интегральной суммой функции $f$ построенной для разбиение  $(\tau,\xi)$ называется число 
+     \[
+    S(f,(\tau,\xi)) = \sum_{i = 1\dots n, j = 1 \dots m} f(\xi_{ij}) \Delta x_{i} \Delta y_{j}
+    .\] 
+\end{definition}
+\begin{definition}[Множество меры нуль]
+    Пусть $X \subset R^2$ x имеет меру нуль, если $\forall \epsilon > 0 \exists $ 
+    последовательность промежутков $\Pi_1,\Pi_2,\dots$ 
+    \[
+    X \subset \bigcap \Pi
+    .\] 
+    сумма площадей этих $P$ меньше  $\epsilon$
+\end{definition}
+\subsection{Упражнение}
+\[
+\cap,\cup,\setminus
+.\] 
+множетсв меры нуль есть множетсво меры нуль
+\[
+A \subset B
+.\] 
+B имеет меру нуль, значит А имеет меру нуль
+\subsection{Упражнение}
+\[
+\partial 
+.\] 
+граница
+\begin{enumerate}
+    \item $\partial(A \cup B) \subset \partial(A) \cap \partial(B)$
+\end{enumerate}
+\subsection{Интеграл по промежутку}
+Пусть $(\tau^{(n)},\xi^{(n)})$ последовательность оснащенных разбиений.
+Будем говорить, что эта последовательность измельчающаяся, если последовательность рангов 
+\[
+\lambda(\tau^{(n)},\xi^{(n)}) \to 0
+.\] 
+\begin{definition}
+Пусть функция задана на промежутке $\Pi$. Функция  $f$ называется интегрируемой если
+\[
+    \exists  I \forall \text{~измельчающийся последовательности} (\tau^{(n)},\xi^{(n)})
+.\] 
+\[
+S(f,(\tau^{(n)},\xi^{(n)})) \to I
+.\] 
+\end{definition}
+Если $f$ интегрируема на множетстве  $\Pi$  $I$ называется интегралом по промежутку  $P$
+ \[
+I = \int\limits_{\Pi}^{} f 
+.\] 
+Другие обозначения
+\[
+\int\limits_{\Pi}^{} f(x,y)  dx dy
+.\] 
+\[
+\iint\limits_{\Pi} f(x,y) dx dy
+.\] 
+\[
+    \int\limits_{\Pi}^{} f(x) dx \text{~x - вектор} 
+.\] 
+\subsection{Пример}
+\[
+    \Pi = [a,b] \times [c,d]
+.\] 
+\[
+f(x,y) = C
+.\] 
+\[
+\int\limits_{\Pi}^{}  f(x,y) dxdy = C(b-a)(d-c)
+.\] 
+\subsection{Пример}
+\[
+    \Pi = [0,1] \times [0,1]
+.\] 
+\[
+f(x,y) =
+\begin{cases}
+    0, \text{хотя бы одно число иррационально}\\
+    1, \text{оба рациональные}
+\end{cases}
+.\] 
+Докажем, что эта функция неинтегрируема
+Сравним два разбиения. Первое оснащение $\xi_{i,j}$ обе координаты рациональны,
+второе оснащение $\xi'_{ij}$ одна из координат которых рациональна. Тогда
+\[
+S(f,(\tau^{(n)},\xi_{ij})) = 1
+.\] 
+\[
+S(f,(\tau^{(n)},\xi')) = 0
+.\] 
+Множество всех интегрируемых функций на $\Pi$ ,  $R(\Pi)$
+\subsection{Простейшие свойства интегралов}
+\begin{enumerate}
+    \item 
+        \[
+\int\limits_{\Pi}^{}  \alpha f = \alpha \int\limits_{\Pi}^{} f  
+        .\] 
+    \item $f,g \in R(\Pi) \implies f + g \in R(\Pi)$
+    \item
+         $f,g \in R(\pi) f \le  g \implies \int\limits_{\Pi}^{} f \le  \int\limits_{\Pi}^{} g   $
+    \item $f \in R(\Pi) \iff$ множество точек разрыва имеет меру нуль
+\end{enumerate}
+\subsection{Допустимое мноежстево}
+\begin{definition}
+    Множество $D$ называется допустимым, если его граница  $\partial D$ имеет меру 0
+\end{definition}
+\subsubsection{Замечание}
+Множество D допустимо $\iff$ 
+ \[
+\forall  \epsilon > 0 \exists M, N
+.\]
+$M \subset D \subset N$,  площаль  $N$ - площаль  $M$  $< \epsilon_2 $
+\subsection{Определение интеграла по допустимому множеству}
+\begin{lemma}
+    Пусть $D$ допустимое множество, f функция заданная на  $D$, пусть  $\Pi_1,\Pi_2$
+    \[
+    D \subset \Pi_1, D\subset \Pi_2
+    .\] 
+    Рассмотрим функции $\overline{f_1}$
+    \[
+    \overline{f_1} = 
+    \begin{cases}
+        f(x,y), x \in \Pi_1\\
+        0, x \notin \Pi_1
+    \end{cases}
+    .\] 
+    \[
+    \overline{f_2} = 
+    \begin{cases}
+        f(x,y) , x\in \Pi_2\\
+        0, x \notin \Pi_2
+    \end{cases}
+    .\] 
+    Тогда
+    \[
+    \int\limits_{\Pi_1}^{}  \overline{f_1} = \int\limits_{\Pi_2}^{}   \overline{f_2}
+    .\] 
+\end{lemma}
+\begin{proof}
+    Рассмотрим  $\Pi = \Pi_1 \cap \Pi_2$
+    \[
+    \exists  \int\limits_{\Pi}^{} f \iff \exists  \int\limits_{\Pi_1}^{}   f
+    .\] 
+    \[
+    \overline{f(x,y)} = 
+    \begin{cases}
+        f(x,y), (x,y) \in D\\
+        0 , (x,y) \notin D
+    \end{cases}
+    .\] 
+    $\overline{f}$ интегрируема на $\Pi$  $\iff$ множество точек разрыва имеет меру 0,
+
+     $\overline{f_1}$ интегрируемо на $\Pi_1$ $\iff$ множество ее точек разрыва имеет меру 0.
+     Докажем
+      \[
+     \int\limits_{\Pi_1}^{} \overline{f_1}  = \int\limits_{\Pi}^{} \overline{f} 
+     .\] 
+     Тогда для вычисления интеграла можно рассмотреть какую нибудь одну измельчающуюся последовательность оснащенных разбиений. Тогда интегральная сумма каждого такого разбиения, совпадает с некоторой интегральной суммой функции
+\end{proof}
+\begin{definition}
+    Пусть функциия $f$  задана на допустимом множестве  $D$, пусть  $\Pi$ произвольный промежуток, такой что  $D \subset \Pi$ рассмотрим функцию  $\overline{f}$ заданную на $\Pi$
+     \[
+    \overline{f}(x,y) = 
+    \begin{cases}
+        f(x,y) , (x,y) \in D \\
+        f(x,y) , (x,y) \notin D
+    \end{cases}
+    .\] 
+    Функция $f$ назывется интегрируемой на $\Pi$, и интеграл функции f по множеству  $D$ называется   $\int\limits_{\Pi}^{} \overline{f} $
+\end{definition}
+\subsection{Свойства интеграла по произвольному допустимому множества}
+\begin{enumerate}
+    \item $f \in R(D)$   $\iff$  $\alpha f \in R(D) \land \int\limits_{D}^{} \alpha f = \alpha \int\limits_{D}^{} f  $
+     \item $f,g \in R(D) \iff f + g \in R(D) \land \int\limits_{D}^{} (f+g) = \int\limits_{D}^{} f + \int\limits_{D}^{} g   $
+     \item $f \le g $ на D $\iff$  $\int\limits_{D}^{} f \le  \int\limits_{D}^{} g  $
+    \item Пусть множество $D$ имеет меру нуль, тогда  $\int\limits_{D}^{} f = 0 $
+    \item Пусть D допустимое множество, $f,g \in R(D)$, пусть множество точек из  $D$ в которых  $f(x,y) \neq g(x,y)$ имеет меру нуль, тогда $\int\limits_{D}^{} f = \int\limits_{D}^{} g  $
+\end{enumerate}
+\begin{proof}
+    \begin{enumerate}
+        \item Самостоятельно
+        \item Пусть A множество точек разрыва f, B множество точек разрыв g. Множество точек разрыва $f+g$ лежит в  $A \cup B$
+            \[
+            \int\limits_{D}^{}   (f + g) = \int\limits_{\Pi}^{}  \overline{f + g} = 
+            \int\limits_{\Pi}^{}   \overline{f} + \int\limits_{\Pi}^{}   \overline{g}
+            .\] 
+    \end{enumerate}
+\end{proof}
 \end{document}
