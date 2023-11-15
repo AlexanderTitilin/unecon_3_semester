@@ -1,0 +1,195 @@
+\documentclass[14pt]{extarticle}
+\usepackage{fontspec}
+\usepackage[russian, english]{babel}
+\setmainfont{Times New Roman}
+\usepackage{amssymb}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
+\newtheorem{example}{Пример}[definition]
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{exmp}{Пример}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\title{Вопросы к зачоту по структурам}
+\author{}
+\date{}
+\begin{document}
+    \maketitle
+    \section{Асимптотические оценки времени работы алгоритмов и их смысл}
+    Пусть $f,g$ функции принимающие только положитльные значения
+    \begin{definition}[Тета]
+        $f = \Theta(g) : \exists c_1,c_2 > 0  n_0 : \forall  n > n_0 ~ c_1 g(n) \le f(n) \le  c_2 g(n)$ 
+    \end{definition}
+    \begin{example}
+        \[
+        \frac{n^2}{2} - 3n = \Theta(n^2)
+        .\] 
+        Чтоб доказать нужно найти нужные константы
+        \[
+        c_1 n^2 \le  \frac{n^2}{2} - 3n \le c_2 n^2
+        .\] 
+        \[
+        c_1 < \frac{1}{2} - \frac{3}{n} \le  c_2 
+        .\] 
+        \[
+        c_1 = 1/4
+        .\] 
+        \[
+        c_2 = 1/2
+        .\] 
+        при $n \ge  12$
+    \end{example}
+    \begin{example}
+        \[
+        c_1 2^{n} \le 2^{n + 1} \le  c_2 2^{n}
+        .\] 
+        \[
+        c_1 \le  2 \le  c_2
+        .\] 
+    \end{example}
+    \begin{definition}[O]
+        \[
+        f = O(g) : \exists  c ~n_0 \forall  n > n_0: f(n) \le  c g(n)
+        .\] 
+    \end{definition}
+    \begin{definition}[Омега]
+        \[
+        f =  \Omega(n) : \exists  c, n_0 \forall  n > n_0 f(n) \ge  cg(n)
+        .\] 
+    \end{definition}
+    \begin{definition}[o-малое]
+        \[
+        f = o(g) : \lim_{n \to \infty} \frac{f(n)}{g(n)} = 0
+        .\] 
+    \end{definition}
+    \section{Теорема о рекурсии}
+    Есть рекурсивный алгоритм. Его время работы зависит от параметра n (размера входных данных)
+    \begin{enumerate}
+        \item Если $n < k, k = const$ решаем задачу нерекурсивно относительно n
+        \item иначе разбиваем задачу на  $a$ подзадач размера  $\frac{n}{b}$ каждую решаем рекрсувно
+    \end{enumerate}
+    Время работы такого алгоритма описываем такой формулой
+    \[
+    T(n) = 
+    \begin{cases}
+        g(n), n < k\\
+        a * T(\frac{n}{b}) + f(n), n\ge  k
+    \end{cases}
+    .\] 
+    $g(n)$ время для нерекурсивного решения ,  $f(n)$ время для определения подзадач и собирания результатов рекурсивных вызовов
+     \begin{theorem}
+        Пусть время работы рекурсивного алгоритма выражается формулой
+        \[
+        T(n) = aT(\frac{n}{b}) + f(n)
+        .\] 
+        \begin{enumerate}
+            \item Если $f(n) = O(n^{c}), c< \log_{b}{a}$ то $T(n) = \Theta(n^{\log_{b}a})$
+            \item Если $f(n) = \Theta(n^{c} (\log_{b}a)^{k}$ для $k\ge 0, c= \log_{b}a$, то $T(n) =\Theta(n^{c} (\log{n})^{k+1})$
+             \item $f(n) = \Omega(n^{c}) c > \log_{b}a$, то $T(n) = \Theta(f(n))$ 
+                 для это еще должно быть
+                 \[
+                 a f(\frac{n}{b}) < k f(n) ~ k < 1
+                 .\] 
+        \end{enumerate}
+        Частный случай при $a = b$
+         \[
+        T(n) = a T(\frac{n}{a}) + f(n)
+        .\] 
+        \begin{enumerate}
+            \item Если $f(n) = O(n^{c}) ,c<1$ то $T(n) = \Theta(n)$
+            \item Если  $f(n) =  \Theta(n)$ то  $T(n) = \Theta(n \log{n})$
+            \item Если $f(n) = \Omega(n^{c}), c> 1$, То $T(n) = \Theta(f(n))$
+        \end{enumerate}
+    \end{theorem}
+    \begin{exmp}
+        \[
+        T(n) = 9T(\frac{n}{3}) + n
+        .\] 
+        \[
+            \log_{b}{a} = 2
+        .\] 
+        \[
+        n = O(n) \iff T(n) = \Theta(n^{2})
+        .\] 
+    \end{exmp}
+    \begin{exmp}
+        \[
+        T(n)=T (\frac{2 n}{3}) +1
+        .\] 
+        \[
+        f(n) = 1
+        .\] 
+        \[
+        a = 1
+        .\] 
+        \[
+        b = \frac{3}{2}
+        .\] 
+        \[
+            \log_{3/2} 1 = 0
+        .\] 
+    \end{exmp}
+    \section{Сортировка слиянием}
+    Оценка времени работы $T(n) = 2 T (\frac{n}{2}) + n$ 
+    \[
+    n = \Theta(n)
+    .\] 
+    По теореме $T = \Theta(\log n)$
+    \section{Длинная арифметика}
+    Число представляем как список $int$, каждое число меньше некого числа, которое помешается в  $int$. $a = \{a_0,a_1,\dots,a_{n-1}\}$, $\forall i < n -1~ a_{i} < b$
+     \[
+     a = \sum_{i = 0}^{n-1} a_i b^{i}
+     .\] 
+     За $b$ удобно брать большую степень 10 , например миллион. Еще удобнее брать большую степень двух как пример  $2^{31}$
+     \subsection{Сложение}
+     Сложение двух длинных чисел происходит точно так как в столибик. Для сложения нужно сделать $n$ элементарных операций, где  $n$ количесвто цифр самого длинного числа.
+    \subsection{Деление с остатотком}
+    Опять алгоритм деления в столбик
+    \subsection{Умножение}
+    Если умножать в столбик, придется сделать  $n^2$ элементарных операций
+    \subsubsection{Алгоритм карацубы}
+    Пусть есть числа $a,b$ длины  $n$,  $c$ основание системы счисления
+     \[
+    x = c^{n/2}
+    .\] 
+    \[
+    a = \alpha_1 x + \alpha_2
+    .\] 
+    \[
+    b = \beta_1 x + \beta_2
+    .\] 
+    \[
+    ab = \alpha_1 \beta x^2 + \alpha_1 \beta_2 x + \alpha_2 \beta_1 x + \alpha_2  \beta_2 = \alpha_1 \beta_1 x^2 + (\alpha_1 \beta_2 + \alpha_2 \beta_1) x + \alpha_2 \beta_2
+    .\] 
+    \[
+    T(n) = 4 T(n/2) + O(n)
+    .\] 
+    \[
+    \log_{2}4 = 2
+    .\] 
+    \[
+    T(n) = \Theta(n^2)
+    .\] 
+    \[
+    \alpha_1 \beta_1 x^2 + (\alpha_1 \beta_2 + \alpha_2 \beta_1) x + \alpha_2 \beta_2 = \alpha_1 \beta_1 x^2 + ((\alpha_1 + \beta_1)(\alpha_2 + \beta_2) -\alpha_1 \beta_1 -\alpha_2 \beta_2) + \alpha_2 \beta_2
+    .\] 
+    \[
+    T(n) = 3 T(\frac{n}{2}) + O(n)
+    .\] 
+    \section{Алгоритм рабина карпа}
+    Есть строка, есть подстрока, есть хешфункция, все хеши подстрок нужной длины сранвивем с хешем искомой, если равны, сравниваем посимвольно. Для опитимизации, надо сделать хорошую хеш функцию, чтоб было малок коллизий, чтобы она например зависела от позиций.
+    \section{Грамматики,Регулярные выражения}
+    Можно определить язык через регулярные выражения. Рассмотрим регулярки в джаве. В джаве есть класс Pattern и класс Mathcher. Pattern содержит компилированные выражения, Mathcer ищут в тексте штуки по регулярке.
+
+    Рассмотрим задачу, есть строка $s$, нужно проверить подходит ли под регулярку 
+ \begin{lstlisting}[language=Java] 
+ s.mathcher("kjdskjdsk");
+\end{lstlisting} 
+    такая фигня возвращает boolean
+\end{document}
