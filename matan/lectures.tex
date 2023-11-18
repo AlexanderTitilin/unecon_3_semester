@@ -1100,4 +1100,127 @@ $M \subset D \subset N$,  площаль  $N$ - площаль  $M$  $< \epsilon
             .\] 
     \end{enumerate}
 \end{proof}
+
+    \section{Доказательство свойства 4}
+    Пусть $f \in R(D)$ Множество $D$ имеет меру 0, тогда  $\int\limits_{D}^{} f = 0 $ \\
+    \[
+    D \subset \Pi
+    .\] 
+    \[
+    \overline{f} = 
+    \begin{cases}
+        f(x,y) , (x,y) \in D \\
+        0, (x,y) \notin D
+    \end{cases}
+    .\] 
+    \[
+    \int\limits_{D}^{} f = \int\limits_{\Pi}^{} \overline{f}   =  \lim S(\overline{f},(\tau^{(n)},\xi^{(n)}))
+    .\] 
+    для которых  $\lambda(\tau^{(n)}) \to 0$\\
+    Известно, что $\overline{f} \in R(\Pi)$, то последовательность оснащенных разбиений, моно выбирать как хотим. D имеет меру нуль, то для кадого $t^{(n)}$ в любом промежутке разбиения. В прямоугольник $\varDelta_{ij}$ выберем точку $\xi_{ij} \notin D$ Тогда
+    \[
+        S(\overline{f},(\tau^{(n)},\xi^{(n)})) = \sum_{i,j} f(\xi_{ij}) \text{площ} \varDelta_{ij} = 0
+    .\] 
+    \section{Доказательство свойства 5}
+    \[
+    f,g \in R(D)
+    .\] 
+    Множество точек, где $f(x,y) \neq g(x,y)$ имеет меру нуль, то 
+    \[
+    \int\limits_{D}^{} f = \int\limits_{D}^{} g  
+    .\] 
+    \[
+        \int\limits_{D}^{} f = \int\limits_{D}^{} g \iff \int\limits_{D}^{} (f - g)  =0
+    .\] 
+    \section{Аддитивность}
+    пусть $D_1,D_2$ допустимые множества
+    \begin{enumerate}
+        \item $D_1 \cup D_2$ , $D_2 \cap D_1$ допустиыме множесва
+        \item $f \in R(D_1 \cup D_2) \iff f \in R(D_1) , \in R(D_2) \implies f \in R(D_1 \cap D_2)$
+        \item $\int\limits_{D_1 \cup D_2}^{} f = \int\limits_{D_1}^{} f + \int\limits_{D_2}^{} f - \int\limits_{D_1 \cap D_2}^{} f      $ 
+        \item Если $D_1 \cap D_2$ имеет меру 0, то 
+            \[
+            \int\limits_{D_1 \cup D_2}^{}   = \int\limits_{D_1}^{} f + \int\limits_{D_2}^{}  f
+            .\] 
+    \end{enumerate}
+    \subsection{Доказательство}
+    \[
+        \partial(D_1 \cup D_2) \subset \partial D_1 \cup \partial D_2
+    .\] 
+    \begin{enumerate}
+        \item 
+        \item 
+            \[
+                f \in R(D_1 \cup D_2) \iff D_1 \cup D_2 ~\text{Допустимо}
+            .\] 
+            и множестсво точек разрыва имеет меру нуль
+            \[
+            \begin{cases}
+                f \in R(D_1)\\
+                f \in R(D_2)
+            \end{cases}
+            \iff 
+            \begin{cases}
+                D_1,D_2 -- \text{Допустимы}\\
+                \text{Множество всех точек разрыва имеет меру нуль}
+            \end{cases}
+            .\] 
+            \item
+            Рассмотрим прямоугольник, содержащий как $D_1$, так и $D_2$
+            Строим следущие функции, $\overline{f_1},\overline{f_2},\overline{f_3},\overline{f}$
+            \[
+            \overline{f} = 
+            \begin{cases}
+                f, \text{на} ~ D_1 \cup D_2\\
+                0 
+            \end{cases}
+            .\] 
+            \[
+            \overline{f_1} = 
+            \begin{cases}
+                f, \text{на} D_1\\
+                0
+            \end{cases}
+        \]
+        \[
+    \overline{f} = \overline{f_1} + \overline{f_2} - \overline{f_3}
+        .\] 
+        Пусть $(x,y) \in \Pi$
+         \begin{enumerate}
+            \item $(x,y) \notin D_1 \cap D_2$ все функции 0
+            \item $(x,y) \in D_1 \land (x,y) \notin D_2$
+                \[
+                \overline{f}(x,y) = f(x,y)
+                .\] 
+                \[
+                \overline{f_1(x,y)} = f(x,y)
+                .\] 
+                \[
+                \overline{f_2(x,y)} = 0
+                .\] 
+                \[
+                \overline{f_3}(x,y) = 0
+                .\] 
+                Равенство выполнилось
+        \end{enumerate}
+        \[
+        \int\limits_{D_1 \cup D_2}^{} f = \int\limits_{\Pi}^{} \overline{f} =
+        \int\limits_{\Pi}^{}  (\overline{f_1} + \overline{f_2} - \overline{f_3}) =
+        \int\limits_{D_1}^{} f +  \int\limits_{D_2}^{} f - \int\limits_{D_1 \cup D_2}^{} f  
+        .\] 
+        \item
+    \end{enumerate}
+    \section{Вычисление двойного интеграла}
+    Пусть $f: \Pi \to \mathbb{R}$
+    \[
+    \iint\limits_{\Pi} f(x,y) dx dy \int\limits_{a}^{b} dx \int\limits_{c}^{d} f(x,y)  dy
+    .\] 
+    \[
+    \iint\limits_{\Pi} f(x,y) dx dy = \int\limits_{c}^{d} dy \int\limits_{a}^{b} f(x,y)   dx
+    .\] 
+    \section{}
+    \[
+        \int\limits_{0}^{2} dy \int\limits_{y^2}^{y+2} f(x,y)   
+    .\] 
+\section{Замечание}
 \end{document}
