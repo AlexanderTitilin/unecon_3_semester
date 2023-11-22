@@ -14,6 +14,7 @@
 \usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
 \newtheorem{theorem}{Теорема}
 \newtheorem{definition}{Определение}
+\newtheorem{zam}{Замечание}
 \newtheorem{corollary}{Следствие}[theorem]
 \newtheorem{lemma}[theorem]{Лемма}
 \title{Лекции по дифференциальным уравнениям}
@@ -1351,4 +1352,134 @@ f растет не быстрее линейной функции
 \begin{theorem}
     Пусть $\exists  f'_{x} \in C(G) \iff ~ \forall $ шара из $G$, для f выполняется условие липщица в B по x
 \end{theorem}
+    \section{Теорема Пикара}
+    \[
+        \dot{x} = f(x)
+    .\] 
+    Нормальная система дифференциальных уравнений
+    \[
+    G \to \mathbb{R}^{n}
+    .\] 
+    $G$ область в  $R^{n+1}_{t,x}$
+    \begin{theorem}[Пикара]
+        Пусть $f \in C(G), f \in Lip_{x}(G)$, тогда
+        \[
+        \forall  (t_0,x_0) \in G
+        .\] 
+        Задача Коши 
+        \[
+            \begin{cases}
+            \dot{x} = f(t,x)\\
+            x(t_0) = x_0
+            \end{cases}
+        .\] 
+        имеет единственное решение, определенное на отрезке Пеано
+        \[
+            I = [t_0-h,t_0+h]
+        .\] 
+     \end{theorem}
+     \begin{zam}
+         \[
+         C^{1}_{x} \implies Lip_{x}
+         .\] 
+         В теореме Пикара можно писать 
+         \[
+         f \in C, f \in C^{1}_{x} (f'_{x} \in C)
+         .\] 
+         менее общая формулировка, но она удобна на практике
+     \end{zam}
+     \subsection{Построение отрека Пеано}
+     $G$ - открытое множество $\implies$  $(t_0,x_0) \in G$ вместе с открытым шаром шаром $B = R_{r}(t_0,x_0)$ 
+     Уменьшм $r$ , $\overline{B} \subset G$ (замкнутый шар). В $\overline{B}$ построим цилиндр
+      \[
+          P := \{(t,x) \mid |t-t_0| \le  a, ||x-x_0|| \le b\}
+      .\] 
+      Пусть $a,b$ малы  $P \subset \overline{B}$. $P$ ограниченно и замкнуто.
+      По теореме Вейштрасса (любая непрерывная функция на компакте достигает наибольшего значения). 
+      \[
+          \exists  M = \max{||f(t,x)||}
+      .\] 
+      \[
+          h := \min{a,\frac{b}{M}}
+      .\] 
+      Cчитаем, что $M \neq 0$, если $M = 0 \implies f = 0$ все решается очень просто.
+       \[
+           I := [t_0-h,t_0 + h]
+      .\] 
+      Отрезок Пеано определяется неоднозначно
+      \subsection{Определение Пикаровских приближений}
+      Заменим задачу коши на эквивалентное ей интегральное ураавнение
+      \[
+      x(t) = x_0 + \int\limits_{t_0}^{t} f(s,x(s))  ds
+      .\] 
+      Мы докажем, что именно интегральное уравние имеет единственное решение на отрезке Пеано $I$. Пикаровские приближения,  $\phi_0(t),\phi_{1}(t),\dots,\phi_{t}(t)$
+      \[
+      \phi_0(t) = x_0
+      .\] 
+      \[
+      \phi_1(t) = x_0 + \int\limits_{t_0}^{t} f(s,\phi(x_0)(s))  ds
+      .\] 
+      \[
+      \dots
+      .\] 
+      \[
+      \phi_{k+1}(t) = x_0 + \int\limits_{t_0}^{t} f(s,\phi_{k}(s))  ds
+      .\] 
+      \subsection{Лемма}
+      \begin{lemma}
+          \begin{enumerate}
+              \item Все пикаровские приближения определены на $I, \phi_{k} \in C(I)$
+              \item $\Gamma_{\phi_{k}} \subset P$
+          \end{enumerate}
+      \end{lemma}
+      \begin{proof}
+          По индукци $k = 0$
+           \[
+          \phi_{0}(t) = x_0
+          .\] 
+          все очевидно.\\
+          Переход $\phi_{k} \in C(i) $ и $\Gamma_{\phi_{k}} \subset P$
+          \[
+          \phi_{k + 1} := x_0 + \int\limits_{t_0}^{t}f(s,\phi_{k}(s)) ds
+          .\] 
+          \[
+          t \in I \iff |t-t_0|\le h
+          .\] 
+          S между  $t,t_0$
+          \[
+          s \in I \implies
+          .\] 
+          \[
+              \phi_{k}(s) \text{полн оgh}
+          .\] 
+          \[
+              (s,\phi_{k}(s)) \in P \forall  s\in I
+          .\] 
+          \[
+          f(s,\phi_{k}(s))
+          .\] 
+          определена при 
+          \[
+          \forall  s \in I \implies \int\limits_{t_0}^{t} f 
+          .\] 
+          \[
+              \forall  t \in I \implies \phi_{k +1}(t) \text{опредлена} \forall t\in I
+          .\] 
+          Пункт 1 доказан
+          \[
+              (t,\phi_{k+1}) \in P \forall  t \in I
+          .\] 
+          \[
+          \begin{cases}
+              |t - t_0| \le  a\\
+              ||\phi_{k + 1} (t) - x_0|| \le  b
+          \end{cases}
+          .\] 
+          Проверим каждое из условий
+          \begin{enumerate}
+              \item 
+                  $t \in I \iff |t-t_0|\le h \le a$ 
+              \item $||\phi_{k+1}(t) - x_0|| = || \int\limits_{t_0}^{t} f(s,\phi_{k}) ds||\le  \int\limits_{t_0}^{t} ||f(s,\phi_{k}(s))||ds \le |\int\limits_{t_0}^{t} ||f(s,\phi_{k}(s))||ds| \le  M | \int\limits_{t_0}^{t} ds = M|t-t_0|\le  Mh = b $
+          \end{enumerate}
+      \end{proof}
 \end{document}
