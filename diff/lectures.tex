@@ -1446,7 +1446,7 @@ f растет не быстрее линейной функции
           t \in I \iff |t-t_0|\le h
           .\] 
           S между  $t,t_0$
-          \[
+        Определение  \[
           s \in I \implies
           .\] 
           \[
@@ -1480,6 +1480,456 @@ f растет не быстрее линейной функции
               \item 
                   $t \in I \iff |t-t_0|\le h \le a$ 
               \item $||\phi_{k+1}(t) - x_0|| = || \int\limits_{t_0}^{t} f(s,\phi_{k}) ds||\le  \int\limits_{t_0}^{t} ||f(s,\phi_{k}(s))||ds \le |\int\limits_{t_0}^{t} ||f(s,\phi_{k}(s))||ds| \le  M | \int\limits_{t_0}^{t} ds = M|t-t_0|\le  Mh = b $
-          \end{enumerate}
+         \end{enumerate}
       \end{proof}
+По условию $f \in Lip_{x}(G)$
+ \[
+ \exists L \ge  0 \forall (t,x_1),(t,x_2) \in G
+ .\] 
+ \[
+ ||f(t,x_1) - f(t,x_2)|| \le  L ||x_1 - x_2||
+ .\] 
+ \begin{lemma}
+     Справедлива следущая оценка $||\phi_{k}(t) = \phi_{k - 1}(t)|| \le  \frac{M}{L} \frac{L^{k}|t-t_0|^{k}}{k!} \forall  k= 1,2,\dotsm \forall  t\in I$, I отрезок Пеано
+ \end{lemma}
+ \begin{proof}
+     По индукции\\
+     $k = 1$  $||\phi_1(t) - \phi_{0}(t)|| = || \int\limits_{t_0}^{t} f(s,x) ds || \le |\int\limits_{t_0}^{t} ||f(s,x_{0})|| ds |  \le  M |\int\limits_{t_0}^{t} ds| = M |t - t_0|  $
+     \[
+     \frac{M}{L} \frac{L|t-t_0|}{1!}
+     .\] 
+     \[
+     M = \max_{p}||f||
+     .\] 
+     Переход  $k \to k+1$
+     \[
+     ||\phi_{k+1}(t) - \phi_{k}(t)|| =  || (x_0 + \int\limits_{t_0}^{t} f(s,\phi_{k}(s) ds) - (x_0 - \int\limits_{t_0}^{t} f(s,\phi_{k-1}(s))ds )  )
+     .\] 
+     \[
+     || \int\limits_{t_0}^{t} (f(s,\phi_{k} (s)) - f(s,\phi_{k-1}(s))) ds || \le 
+     |\int\limits_{t_0}^{t} ||(f(s,\phi_{k} (s)) - f(s,\phi_{k-1}(s)))|| ds|
+     .\] 
+     По условию липшица
+     \[
+     \le | \int\limits_{t_0}^{t} L ||\phi_{k}(s) -\phi_{k-1}(s)||ds| \le 
+     L|\int\limits_{t_0}^{t} \frac{M}{L} \frac{L^{k} |s - t_0|^{k}}{k!} ds| = \frac{M}{L}\frac{L^{k + 1}}{k!} |\int\limits_{t_0}^{t} |s-t_0|^{k} ds| = \frac{|t - t_0|^{k+1}}{k+1}
+     .\] 
+     \begin{enumerate}
+         \item если $t \ge  t_0 \iff s \ge  t_0 $ все моули сняли с +
+             \[
+             \int\limits_{t_0}^{t}  (s - t_0)^k ds = \frac{(s - t_0)^{k+1}}{k+1}  = \frac{(t- t_0)^{k_{1}}}{k+1} - 0
+             .\] 
+        \item дальше самостоятельно
+     \end{enumerate}
+     Таким образом
+     \[
+     ||\phi_{k_{1}} (t)  - \phi_{k}(t)|| \le \frac{M}{L} \frac{L^{k+1} |t -t_0|^{k+1}}{k_1! (k+1)}
+     .\] 
+ \end{proof}
+ \subsection{Равномерная сходимость пикаровских приближений}
+ \subsubsection{Напоминание}
+ \[
+ \phi_{k}(t) \to \phi(t), k \to \infty
+ .\] 
+ Сходится \textbf{поточечно}, 
+ \[
+ \forall  t \in I \iff \forall  t \in I \forall  \epsilon >0 \exists  N = N(\epsilon,t) :
+ \forall  k \ge  N : ||\phi_{k}(t) - \phi(t)|| < \epsilon
+ .\] 
+ Если $N = N(\epsilon)$, то такая сходимость называется равномерной
+  \[
+ \forall  \epsilon  > 0 \exists  N= N(\epsilon) \forall  ~k \ge  n t \in I~ ||\phi_{k}(t) - \phi(t)|| < \epsilon
+ .\] 
+ Альтернативный вариант
+ \[
+ \forall  \epsilon > 0 \exists  N = N(\epsilon) : \forall   \ge  0 \sup_{t \in I} ||\phi_{k} (t) - \phi(t) || < \epsilon
+ .\] 
+ \[
+ \phi_{k}(t) \rightrightarrows \phi(t),  t\in I ,k \to \infty
+ .\] 
+ \subsubsection{ФАКТ}
+ Пусть $\phi_{k}(t) \in C(I), \phi_{k} \rightrightarrows \phi , k \to \infty \implies \phi(t) \in C(I)$
+ \subsubsection{ФАКТ}
+ Пусть $\phi_{k} \rightrightarrows \phi(t) , I =[a,b], k \to \infty \iff$
+ \[
+ \int\limits_{a}^{b} \phi_{k}(t)  dt \to \int\limits_{a}^{b} \phi(t) dt 
+ .\] 
+ \begin{lemma}
+     $\{\phi_{k}\}$ равномерно сходится на $I$
+      \[
+     S = \phi_0 + (\phi_1 - \phi_0) + \dots
+     .\] 
+     \[
+     S_{n}T = \sum_{k=0}^{n} \varDelta_{k} (t) = \phi_{n}(t)
+     .\] 
+     \[
+         \{\phi_{k}\} \text{~Равномерно сходится} \iff S_{k}(t) \text{~равномерно схоится}\iff S \text{~равномерно сходится}
+     .\] 
+     Существует критерий Вейрштрасса схоимости функционального ряда
+     \[
+     \sum_{k=0}^{\infty} s_{k}(t)
+     .\] 
+     мажориуется сходимым положительным числовым рядом $\sum_{k = 0}^{\infty} a_{k}$, то ряд сходится равномерно
+ \end{lemma}
+ \begin{lemma}{lemma}
+     Пусть $\phi(t) = \lim_{k \to \infty} \phi_{k}(t)$ \\
+     $\phi(t)$ есть решение интегрального уравнения 2
+ \end{lemma}
+ \begin{proof}
+     \begin{enumerate}
+         \item $\phi \in C(I)$ реально
+        \item  $\Gamma_{\phi} \subset  \subset G$
+             \[
+                 (t,\phi_{k}(t) ) \in P \forall  t \in I 
+             .\] 
+             \[
+                 (t, \phi_{k}(t)) \to (t,\phi(t)) \iff (t,\phi(t)) \in P
+             .\] 
+        \item $\phi(t) \equiv x + \int\limits_{t}^{t} f(s,\phi(s)) ds  $
+            \[
+            \phi_{k + 1}(t) \rightrightarrows \phi(t)
+            .\] 
+            Покажем, что 
+            \[
+            \int\limits_{t_0}^{t} f(s,\phi_{k}(s))  ds \rightrightarrows \int\limits_{t_0}^{t} f(s,\phi(s))  ds
+            .\] 
+            \[
+                \sup_{t\in I} || \int\limits_{t_0}^{t} f(s,\phi_{k}(s))  ds - \int\limits_{t_0}^{t} f(s,\phi(s))  ds || \to 0 ???????
+            .\] 
+            \[
+            || \int\limits_{t_0}^{t} f(s,\phi_{k}(s))  ds - \int\limits_{t_0}^{t} f(s,\phi(s))  ds || \le  | \int\limits_{t_0}^{t} ||f(s,\phi_{k}) - d(s,\phi) || ds | \le \\
+            L | \int\limits_{t_0}^{t} ||\phi_{k}(s) -\phi(s) ||ds |
+            .\] 
+            \[
+            L | \int\limits_{t_0}^{t} ||\phi_{k}(s) -\phi(s) ||ds | \le  L \int\limits_{t_0}^{t} \sup_{I} || \phi_{k}(s) - \phi(s) || ds \le L \sup_{I} ||\phi_{k}(s) -\phi(s)|| * |t -t_0| \le 
+            .\] 
+            \[
+            L \sup_{I} ||\phi_{k}(t) - \phi(t)||
+            .\] 
+     \end{enumerate}
+ \end{proof}
+ \begin{lemma}[Неравенство Грондолла]
+     Пусть $u(t) : <a,b> \to \mathbb{R}$, $u(t) \ge  0, ~ u(t) \in C(<a,b>)$
+     \[
+     \exists  \alpha ,\beta \ge  0 : 0 \le  u(t)\le  \alpha + \beta| \int\limits_{t_0}^{t} u(s) ds|
+     .\] 
+     \[
+         \implies
+     .\] 
+     \[
+     0 \le  u(t) \le  \alpha e^{\beta |t - t_0|}~ \forall t \in <a,b>
+     .\] 
+ \end{lemma}
+ \begin{proof}
+    Мы рассмотрим только случай только $t \ge  t_0$ 
+    \[
+    0  \le  u(t) \le  \alpha + \beta \int\limits_{t_0}^{t} u(s) ds
+    .\] 
+    \[
+    v(t) \alpha + \beta \int\limits_{t_0}^{t} u(s) ds
+    .\] 
+    $v$ интегрируема и дифференицруема
+     \[
+         \dot{v}(t) = \beta u(t)\le  \beta v(t)
+    .\] 
+    \[
+    v(t_0) = \alpha_0
+    .\] 
+    \[
+        \begin{cases}
+            \dot{v} = \beta v\\
+            v(t_0) = \alpha
+        \end{cases}
+    .\] 
+    \[
+    v(t) = \alpha e^{\beta(t - t_0)}
+    .\] 
+    \[
+    v(t) \le \alpha e^{\beta (t - t_0)}???
+    .\] 
+    \[
+    \frac{d}{dt} (v(t) e^{-\beta (t - t_0)}) \le 0????
+    .\] 
+    \[
+        \frac{d}{dt} (v(t)e^{-\beta (t - t_0)}) = \dot{v} (t) e^{-\beta (t - t_0)} + v(t) (-\beta) e^{-\beta (t - t_0)}
+        \le  v(t) e^{-\beta (t - t_0)} \mid_{t = t_0} = v(t)e^{0} = \alpha
+    .\] 
+ \end{proof}
+ \begin{corollary}
+     Если $\alpha = 0$ 
+      \[
+     0 \le  u(t) < \beta  |\int\limits_{t_0}^{t}   u(s) ds | \iff u = 0
+     .\] 
+ \end{corollary}
+ \begin{lemma}
+     Пусть 2 решения задачи коши, определенные на общем про мещщутку, тогда $\phi_1 = \phi_2$ на $<a,b>$
+ \end{lemma}
+ \begin{proof}
+     \[
+     || f(t,x_1) - f(t,x_2)| | \le  L ||x_1 -x_2||
+     .\] 
+     \[
+     || \phi_{1} (t)  - \phi_2 (t)|| =  || x_0 + \int\limits_{t_1}^{t}  f(s,\phi_{1}(s))  ds -
+     - (x_0 + \int\limits_{t_1}^{t} f(s,\phi_2 (s) ) ds )   || =
+     .\] 
+     \[
+     u(t) = ||\phi_1(t) - \phi_2 (t) || 
+     .\] 
+     \[
+     u(t) \le  L | \int\limits_{t_0}^{t} u(s)  ds |
+     .\] 
+     $\alpha = 0 , \beta = L$
+      \[
+     u(t) = 0 , t \in <a,b> \iff \phi_1 = \phi_2
+     .\] 
+ \end{proof}
+ \subsection{Переформулировка}
+ \[
+ y^{(n)} = f(x,y,y',\dots,y^{(n-1)})
+ .\] 
+ Т Пикара для ДУ n-го порядка. Пусть $f$ непрерывна в область  $G$,  $f \in LIP_{y_1,\dots,y_{n}}$
+ G облать существование и единственноть
+ \[
+     (x_0,y_1^{0},\dots,y_{n}^{0}) \in G
+ .\] 
+ \[
+ \begin{cases}
+     y^{(n)} = f(x,y,y',\dots,y^{(n - 1)})\\
+     y(x_0) = y_{1}^{0}\\
+     y'( x_0) =  y_{1}^{0}\\
+     \dots\\
+     y^{(n - 1)} (x_0) = y_{n}^{0}
+  \end{cases}
+ .\] 
+ Имеет $!$ решение, определенное на отрезке Пеано  $[x_{0}- h, x_{0}+ h]$
+ \begin{corollary}
+     \[
+     f \in C^{1}_{y_1,\dots,y_{n}} \implies f \in LIP_{y_1,\dots,y_{n}}
+     .\] 
+ \end{corollary}
+ \subsection{228}
+ \[
+     (x + 1) y'' = y + \sqrt{y} 
+ .\] 
+ \[
+ y'' = \frac{y + \sqrt{y} }{x + 1}
+ .\] 
+ \[
+ y(x_0) = y_1^{0}
+ .\] 
+ \[
+ y'(x_0) = y_2^{0}
+ .\] 
+ \[
+     G_{\exists !} = \{(x,y,y')\ | x\neq -1, y >  0, y' \in \mathbb{R}\}
+ .\] 
+ \[
+ y > 0 , \sqrt{y}  \notin C^{1}
+ .\] 
+ \section{Понятие о продолжимости}
+ \subsection{Пример}
+ Рассмотри задачу Коши
+ \[
+ \begin{cases}
+     \dot{x} = x\\
+     x(0) = 1
+ \end{cases}
+ .\] 
+ \[
+     x = e^{t}
+ .\] 
+ \begin{definition}
+     Решение $\phi(t)$ определенное на  $<a,b>$ продолжимо вправо из  $a,b$ если  $\exists $ решение $\psi$, опр на 
+      $<a,b_1>,b_1 > b$ и $\phi =  \psi$ на $<a,b>$,  $\psi$ продолжение решения  $\phi$
+ \end{definition}
+ В теореме пикара меется максимально продолжанное решение.
+ Договоренность, в дальнейшем под решением понимается только максимально продолженное решение
+ \section{Линейный системы и уравнения}
+ \subsection{Теорема существования и единственности}
+ \begin{definition}[Линейная система дифференциальных уравнений]
+     ЛСДУ -- следущая нормальня нормальная система
+     \[
+         \dot{x} =A(t)x+f(t)
+     .\] 
+     \[
+     x \in \mathbb{R}^{n}
+     .\] 
+     \[
+     A \in M_{n \times n}
+     .\] 
+     \[
+     f(t)  - (n \times 1)
+     .\] 
+     Если $f(t) \equiv 0$ то линейная система называется однородной, иначе неоднородная
+     \[
+     f(t) : (a,b) \to \mathbb{R}^{n}
+     .\] 
+     \[
+         f(t) \in C(a;b) \iff ~\text{каждая скалярная компонента непрерывная функция}
+     .\] 
+     \[
+     A(t) : (a,b) \to M^{n\times n}
+     .\] 
+     \[
+     A(t) \in C(a,b) \iff ~\text{каждая скалярная компонента непрерывная функция}
+     .\] 
+     Правая часть $F(t,x) = A(t) x + f(t)$
+     \[
+     F: G \to R^{n}
+     .\] 
+     \[
+         G = (a,b) \times R^{n} ~ \text{Область определения системы}
+     .\] 
+     Ясно , что $F \in C(G)$
+ \end{definition}
+ \begin{theorem}[Существование и единственность]
+     Пусть $A(t) \in C(a,b), f(t) \in C(a,b)$, тогда  $G$ область существования и единственности задача Коши
+     \[
+     \begin{cases}
+         \dot{x} = A(t) x + f(t)\\
+         x(t_0) = x_0
+     \end{cases}
+     .\] 
+     имеет единственное решение, при этом максимальный промежуток существования любого решения есть $(a,b)$
+ \end{theorem}
+ \begin{proof}
+     Про максимальный промежуток принимаем на веру. Из т. Пикара $F(t,x)x$ непрерывно диффереенцируема по x, тк  $F'_{x} = A(t)$ непрерывна. По т сязи дифф и липшица. F удовлетворяет условию Липщица
+ \end{proof}
+ \subsection{Линейные уравния n-го порядка}
+ \begin{definition}[ЛДУ n-го порядка]
+     \[
+         \sum_{i = 0}^{n} a_{i}x^{(i)} = f(t)
+     .\] 
+     \[
+     a_{k} \in C(a,b)
+     .\] 
+     \[
+         x(t) ~\text{Неизвестная функция}
+     .\] 
+     \[
+     f(t) \in C(a,b)
+     .\] 
+     Если $f \equiv 0 $ однородное, иначе неоднородное
+ \end{definition}
+ \begin{theorem}[существование и единственность]
+     Пусть $a_{k}(t) \in C(a,b)$
+ \end{theorem}
+ \subsection{Линейные однородные системы}
+ \[
+     \dot{x} = A(t) x,  A(t) \in C(a,b), G = (a,b) \times \mathbb{R}^{n}
+ .\] 
+ $M^{0}$ множество всех решений системы
+ \begin{theorem}[о множестве всех решений системы]
+     \begin{enumerate}
+         \item Пусть $\phi_1(t) , \phi_{2}(t)$ - 2 решения, тогда их линейная комбинация есть есть решение
+            \item $M^{0}$ линейное пространство
+     \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+     \[
+         \dot{\phi}_{1,2} = A * \phi_{1,2}
+     .\] 
+     \[
+         (c_1 \phi_1 + c_2 \phi_2)' = c_1 \dot{\phi_{1}} + c_2 \dot{\phi_{2}} 
+     .\] 
+     \[
+     c_1 A \phi_1 + c_2 A \phi_2 = A(c_1\phi_1 + c_2 \phi_2)
+     .\] 
+     Множество всех дифференцируемых функций. решения же подпространсство
+\end{proof}
+\begin{lemma}[Критерий линейной независимости]
+    Пусть $\phi_1(t) , \dots, \phi_{m}(t)$ линейно независимы как функции тогда и только тогда гда
+    ($\phi(t_0),\dots,\phi_{m}(t_0)$) линейно независимы как вектора в $R^{n}$
+\end{lemma}
+\begin{proof}
+    мы будем доказывать, что зависимы как функции, когда их значения линейно зависимы как вектора.
+    \\
+    Берем произвольную точку $t_0 \in (a,b)$ $\phi_1(t),\dots,\phi_{n}(t)$ л.з
+    \[
+    \sum_{i =1}^{n} c_{i} \phi_{i} = 0
+    .\] 
+    $t_0$ подставили все круто.\\
+    В обрратную сторону
+    \[
+    \sum_{i = 1}^{n} c_{i} \phi_{i}(t_0) = 0
+    .\] 
+    Рассмотрим 
+    \[
+    \psi(t) := \sum_{i = 1}^{n} c_{i} \phi_{i}(t)
+    .\] 
+    это решение. Посмотрим какую задачу коши решает эта функция в $t_0$
+    \[
+    \psi(t_0) = 0
+    .\] 
+    \[
+    \begin{cases}
+        \dot{x}  = A(t)x\\
+        x(t_0) = 0
+    \end{cases}
+    .\] 
+    Но у такой задачи есть тривиальное решене $x = 0$
+     \[
+    \sum_{i =1}^{n} c_{i} \phi_{i}(t) = 0
+.\]
+\end{proof}
+\begin{theorem}[Теорема о Базисе, о ФСР]
+    Любые $n$ лнз решения образуют ФСР  $n$ порядок системы
+\end{theorem}
+\begin{proof}
+    Пусть $\{\phi_1,\dots,\phi_{n}\}$ лнз решения. Проверяем, что любое решение представляется в виде 
+    \[
+    \phi(t) = \sum_{i = 1}^{n} c_{i} \phi_{k}(t)
+    .\] 
+\end{proof}
+\begin{corollary}
+    $\dim{M^{0}} = n$
+\end{corollary}
+\begin{corollary}
+    ФСР (базис) сущестует всегда, тоесть для ЛОС модно указать $n$ ЛНЗ решений
+    \[
+        e_{k}  = \begin{pmatrix} 
+        0\\
+        \vdots\\\
+        1\\
+        \vdots\\
+        0
+        \end{pmatrix} k, k = 1,\dots,n
+    .\] 
+\end{corollary}
+\[
+x^{(n)} + a_{n-1}(t)x^{(n-1)} + \dots a_1(t)\dots + a_1(t) \dots(x) + a_0(t)(x) = 0
+.\] 
+\begin{theorem}
+    Любая линейная комбинация решений ЛОУ есть решение ЛОУ
+\end{theorem}
+\begin{lemma}
+    Пусть $\phi_1(t),\dots,\phi_{m}(t)$ -- решения ЛОУ. Тогда $\phi_{n},\dots,\phi_{m}$ 
+    Лнз как функции $\iff$
+     \[
+    \begin{pmatrix} 
+    \phi(t_0) \\
+    \dot{\phi(t_0)}\\
+    \dots
+    \phi_1^{(n-1)} (t_0)
+    \end{pmatrix} 
+    ,
+    \dots
+    \begin{pmatrix} 
+    \phi_{n} (t_0)\\
+    \dot{\phi_{n}}(t_0)\\
+    \dots\\
+    \phi^{(n-1)}(t_0)
+
+    \end{pmatrix} 
+    .\] 
+    ЛНЗ как векторы в $\mathbb{R}^{n}$
+\end{lemma}
+\begin{theorem}[Лиувиля-Остроградского]
+    \[
+    W(t) = W(t_0) e ^{\int\limits_{t_0}^{t} a_{n-1}(s) ds }
+    .\] 
+\end{theorem}
+\begin{theorem}
+    Любые $n$ лнз решеня образуют базис в  $M^{0}$
+\end{theorem}
 \end{document}

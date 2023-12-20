@@ -391,4 +391,312 @@ L, M \subset A^{*}
 \end{enumerate}
 \subsection{Графическое задание регулярного выражения}
 Регулярное выражение можно задать с помощью графа, где есть сток и исток
+Дуга может быть помечена символом.
+\includegraphics{g1.pdf}
+\includegraphics{g2.pdf}\\
+\includegraphics{g3.pdf}
+\subsection{Анализ регулярного выражения}
+\begin{enumerate}
+    \item Строим граф регулярного выражения
+    \item В слове рассматриваем последовательно каждый символ
+    \item Просматриваем все пути в графе, отбрасываем тупиковые
+\end{enumerate}
+Если хоть один путь привел в сток, слово принадлежит языку
+\section{Формальные грамматики}
+Формальная Грамматка $G$ это совокупность следущиих объектов
+ \begin{enumerate}
+    \item Терминальный (основной) алфавит $T$
+    \item Нетерминальный (вспомогательный алфавит) $N$  $T \cap N = \emptyset, T \cup N = V$
+    \item Начальный символ  $I \in N$
+    \item Конечное множество  $\Pi$ правил вида  $\alpha \to \beta , \alpha \in V^{+},\beta \in V^{*}$ $\alpha$ содержит хотя бы один нетерминальный символ
+\end{enumerate}
+\subsection{Вывод слов в формальных грамматиках}
+Вывод слова в грамматике -- последовательность слов $\omega_1,\dots,\omega_{k}$,
+$\omega_1 = I$ начальное слово $\omega_{k}$ состоит только из терминальных символов
+\subsection{Пример}
+\begin{enumerate}
+    \item Терминальны алфавит $\{0,1\}$
+    \item  Нетерминальный алфавит  $\{A\}$
+    \item  $I = A$
+    \item  $\{A \to AA, A \to 01, 1A \to A1\}$
+\end{enumerate}
+\[
+A \to AA \to A01 \to AA01 \to 01A01 \to 0A101 \to 001101
+.\] 
+\subsection{Классы грамматик}
+\begin{enumerate}
+    \item $K_0$ грамматики общего вида $\alpha \to \beta , \alpha \in V^{+},b \in V^{*}$
+     \item $K_1$ контекстно-зависимые грамматики $\alpha A \beta \to \alpha \gamma \beta, \alpha,\beta \in V^{*},A \in N,\gamma \in V^{+}$
+     \item $K_2$ контекстно-свободные грамматики $A \to \gamma, A \in N,\gamma \in V^{+}$
+     \item $K_3$ автоматные(регуляные) грамматики $A \to \gamma B, \lor A \to \gamma,
+         A, B \in N,\gamma\in T^{+}$
+\end{enumerate}
+\subsection{Дерево вывода}
+Рассматриваем только контекстно-свобоодные грамматики
+\[
+    T = \{i,d,(,),+,-,*\}
+.\] 
+\[
+    N = \{E\}
+.\] 
+\begin{enumerate}
+    \item $E \to E + E$
+    \item  $E \to E - E$
+    \item  $E \to E*E$
+    \item  $E \to (E)$
+    \item  $E \to i$
+    \item  $E \to d$
+\end{enumerate}
+Вывод слова $i + d * i + d$
+ \begin{enumerate}
+    \item $E$
+    \item  $E + E$
+    \item  $E + E +E$
+    \item  $E + E * E + E$
+    \item  $i +E * E +E$
+    \item  $i + d * E + E$
+    \item  $i + d * i + E$
+    \item  $i + d * i + d$
+\end{enumerate}
+\includegraphics[scale=0.5]{tree.pdf}\\
+дерево вывода не единственное.\\
+Определим однозначную грамматику для этого языка
+\[
+    N = \{E,T,P\}
+.\] 
+\begin{enumerate}
+    \item $E \to E + T$
+    \item  $E \to E - T$
+    \item  $E \to T$
+    \item  $T \to T * P$
+    \item  $T \to P$
+    \item  $P \to (E)$
+    \item  $P \to i$
+    \item  $P \to d$
+\end{enumerate}
+слово $i + d* i + d$
+ \begin{enumerate}
+    \item $E$
+    \item  $ E + T$
+    \item  $E + T + T$
+    \item $E + T * P + T$
+    \item  $T + T * P + T$
+    \item  $P +T * P + T$
+    \item  $P + P * P + T$
+     \item $P + P * P + P$
+     \item $i + P * P + P$
+     \item $i + d * P + P$
+    \item $i + d * i +P$
+    \item  $i + d * i + d$
+\end{enumerate}
+\subsection{Автоматные грамматики}
+\subsubsection{Пример}
+\[
+    T = \{a,d\}
+.\] 
+\[
+    N = \{D,H\}
+.\] 
+\begin{enumerate}
+    \item $D \to aH$
+    \item $D \to a$
+    \item  $H \to aH$
+    \item  $H \to dH$
+    \item  $H \to a$
+    \item  $H \to d$
+\end{enumerate}
+слово $aadad$
+\begin{enumerate}
+    \item $D$
+    \item  $aH$
+    \item  $aaH$
+    \item  $aadH$
+    \item  $aadaH$
+    \item  $aadad$
+\end{enumerate}
+Дерево автоматной грамматики можно представить в виде графа.
+\section{Автоматы}
+\begin{definition}[Детерминированный конечный автомат]
+    \[
+    A = <T,N,I,K,F>
+    .\] 
+    \begin{enumerate}
+        \item $T$ термнальный альфавит, алфавит анализируемого слова
+        \item  $N$ нетерминальный алфавит или алфавит состояний
+        \item  $I \in N$ начальное состояние автомата
+        \item  $K \subset N$ множество заключительных состояний
+        \item  $F$ детерминированная функция переходов  $F: T \times N \to N$
+    \end{enumerate}
+\end{definition}
+Слово $\alpha = \alpha_0 \alpha_1 \dots \alpha_{k}$ считается допущенным автоматом $A$,
+если в последовательности состояний  $Q_0 Q_1 \dots Q_{k} Q_{k + 1}, Q_0 = I, Q_{i + 1} = F(a_1,Q_{i}) Q_{k + 1} \in K$ иначе недопущенно
+\begin{definition}[Недетерминированный конечнй автомат]
+    тоже самое, но $F : T \times N \to 2^{N}$
+\end{definition}
+Слово $\alpha = \alpha_0 \alpha_1 \dots \alpha_{k}$ считается допущенным автоматом $D$,
+если в последовательности состояний  $Q_0 Q_1 \dots Q_{k} Q_{k + 1}, Q_0 = I, Q_{i + 1} \in F(a_1,Q_{i}) Q_{k + 1} \in K$ иначе недопущенно
+\subsection{Пример}
+\begin{enumerate}
+    \item $T = \{d,s\}$
+    \item  $N = \{I,H,E\}$
+    \item  $I$
+    \item  $K = \{H\}$ 
+    \item $F$ задаем с помощью таблицы\\
+        \begin{tabular}{|c|c|c|}
+            \hline
+            & s & d\\
+            \hline
+            I & H & E\\
+            \hline
+            E & E & E\\
+            \hline
+        \end{tabular}
+\end{enumerate}
+\section{Быстрое преобразование Фурье}
+Пусть задан многолчлен с комплексными коээфициентами степени меньше $n$
+ \[
+     A(x) = a_0 + a_1 x + a_2 x^2 + \dots a_{n - 1} x^{n-1}
+.\] 
+$O(n^2)$ время работы умножения многочленов. Надо быстро получить значения в точках. 
+\[
+    A(x) = \sum_{i=0}^{n-1} a_{i} x^{i}
+.\] 
+\[
+    B(x) = \sum_{i=0}^{n-1} b_{i} x^{i}
+.\] 
+\section{Лямбда исчисление}
+\[
+\lambda x. e
+.\] 
+\[
+e_1 e_2
+.\] 
+$+2$ -- функция, которую можно применить к другому числу.
+ \[
+\lambda x. (\lambda y . + x y)
+.\] 
+\[
+    +~2 ~6 \to 7
+.\] 
+пример $\delta$ редукции.  
+\[
+    (\lambda x.e) a \to e_{x}^{a}
+.\] 
+\subsection{Примеры}
+\begin{enumerate}
+    \item $(\lambda x. x) 2 \to  2$
+    \item  $(\lambda x. x) (\lambda x.x) \to \lambda x.x$
+    \item  $(\lambda x. x x)(\lambda x. x x) \to (\lambda x .x x) (\lambda x.x x)$
+         Зациклилось все нахуй
+\end{enumerate}
+У нас два вопроса. Может ли после при применениее редукции в разном порядке, получить новую норальную форму. Нет.
+\subsection{Порядки редукции}
+\begin{enumerate}
+    \item Апликативный, когда стараемся вычислить самые внутренние части, ели есть внешний редекс и внутренний редекс (внутри которого нет ничего), стараемся применить к второму.
+    \item Нормальный порядок редукции,  при котором мы применяем редукции к самому левому из самых внешних.
+\end{enumerate}
+Ленивые вычисления
+\[
+    (\lambda x. + x x) (* 3~4)
+.\] 
+\[
++ (* 3~ 4) (* 3 ~4)
+.\] 
+\[
++ 12~12
+.\] 
+\[
+24
+.\] 
+\subsection{Как рекурсивную функцию предоставить в  лямбда выражение}
+\subsubsection{Факториал}
+\[
+if ~ e_1 ~ e_2 ~ e_3
+.\] 
+\[
+eq_0
+.\] 
+\[
+f =\lambda n. if ~ (eq_0 n)~1~(*~n~(f~(- n~1)))
+.\] 
+\[
+FB = \lambda f. \lambda n . if ~ (eq_0 n) 1 (* ~ n (~ f (- ~ n ~ 1)))
+.\] 
+Найти функцию, которая ищет неподвижную точку, такую функцию назовем комбинатор неподвижной точки, $Y$-комбинатор
+ \[
+Y F = F(Y ~ F)
+.\] 
+\[
+Y ~ FB =  fact
+.\] 
+Прилумано огромное количество таких комбинаторов\
+\[
+Y = \lambda h. (\lambda x . h (x ~ x)) (\lambda x.h (x x))
+.\] 
+\[
+Y F = (\lambda x .F(x,x))(\lambda x . F(x,x)) = F ((\lambda x. F(x,x)) (\lambda x . F(x x))) = F(Y ~ F)
+.\] 
+\[
+Y( FB) 2 = FB(Y FB) 2
+.\] 
+\[
+\lambda n . if (eq_0 n ) 1 (* n ((Y ~FB) (n - 1)))(2)
+.\] 
+\[
+* 2 (Y ~ FB) 1
+.\] 
+\[
+* 2 1 (Y FB) 0
+.\] 
+\[
+* 2 ~ 1 ~ 1
+.\] 
+\subsection{Чистое лямбда исчисление}
+\subsubsection{Логика}
+\begin{enumerate}
+    \item TRUE $\lambda x . \lambda y . x$
+    \item FALSE  $\lambda x . \lambda y . y$
+    \item IF  $\lambda p . \lambda x . \lambda y . p~x~y$
+    \item AND  $\lambda a . \lambda b. \text{IF} a~b~\text{FALSE}$
+    \item OR  $\lambda a . \lambda b.  \text{IF} ~ a ~ b ~ TRUE$
+    \item NOT  $\lambda p . p \text{FALSE} ~ \text{TRUE}$
+\end{enumerate}
+\subsection{Списки}
+\begin{enumerate}
+    \item nil пустой список
+    \item cons получает хрень и список выдает список, где голова хрень, хвост список
+    \item car -- голова
+    \item cdr - хвост
+    \item null -- поясняет пустой или нет
+\end{enumerate}
+\begin{enumerate}
+    \item CONS  $\lambda a . \lambda b . \lambda p . p ~ a ~ a$
+    \item CAR  $\lambda a . \lambda b $
+\end{enumerate}
+\section{SKI-исчисление}
+\[
+I ~ e = e
+.\] 
+\[
+K ~ a ~ b = a
+.\] 
+\[
+S ~ f ~ g ~ x = f ~ x ~ (g ~ x)
+.\] 
+\[
+I = S ~ K ~ K
+.\] 
+\[
+S ~ K ~ K ~  x = K ~ x ~ (K ~ x) = x
+.\] 
+\section{Функция абстрагирования}
+\[
+abs(x,E)
+.\] 
+\[
+    [x] E ~ \lambda x.E
+.\] 
+\[
+    [x] e_1 ~ e_2 = S [x] e_1 [x] e_2
+.\] 
 \end{document}

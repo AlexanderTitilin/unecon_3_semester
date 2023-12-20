@@ -1226,4 +1226,124 @@ $M \subset D \subset N$,  площаль  $N$ - площаль  $M$  $< \epsilon
 \[
 S(f,(\tau^{(n)},\xi)) = \sum_{i=1\dots n,j= 1 \dots n} f(\xi_{i},\mu_{j}) \varDelta x_{i} \varDelta y_{j}
 .\] 
+\section{Полярные Коорднаты}
+$(r,\phi)$
+ \[
+     x = r \cos{\phi}
+.\] 
+\[
+    y = r \sin {\phi}
+.\] 
+\subsection{Пример}
+\[
+\iint_{D} y dx dy
+.\] 
+\[
+    D = \{(x,y) \mid x^2 + y^2 < 2x , x\ge y\}
+.\] 
+Как делать без полярных все понятно
+\begin{proof}
+    
+\end{proof}
+\section{Замена переменной в определнном интегале}
+Вспомним первый курс 
+\[
+\int\limits_{a}^{b} f(g(x)) g'(x) dx  = \int\limits_{g(a)}^{g(b)}  f(t) dt
+.\] 
+\begin{theorem}
+    g непревно дифференцируемая ($g'$ дифференцируема) $g$ обратима
+\end{theorem}
+\begin{theorem}
+    \[
+    \iint_{D_{x,y}}
+    .\] 
+    \[
+    \iint_{D_{u,v}} f(u,v) du dv
+    .\] 
+    \[
+        ( g_1,g_2 )_{(x,y)} \to (g_{1}(x,y),g_{2}(x,y))
+    .\] 
+    \[
+    \iint_{D} f(g_1(x,y),g_2(x,y)) |J| dx dy = 
+    \iint_{G_{u,v}} f(u,v) du dv
+    .\] 
+    \[
+    ( g_1,g_2 ) :  D_{x,y} \to G_{u,v}
+    .\] 
+    \[
+        (x,y) \to (g_1(x,y),g_2(x,y))
+    .\] 
+    \[
+        J = 
+        \begin{vmatrix}
+            \partial_{x} g_1 & \partial_{y} g_1\\
+            \partial_{x} g_2 & \partial_{y} g_2
+        \end{vmatrix} 
+    .\] 
+    \[
+    du = \partial_{x} g_1  dx + \partial_{y} g_1 dy
+    .\] 
+    \[
+    dv = \partial_{x} g_2 dx + \partial_{y} g_2 dy
+    .\] 
+    \[
+    f: (x,y) \to (f_1(x,y),f_2(x,y))
+    .\] 
+    \[
+    \overline{x_0} = (x_0,y_0)
+    .\] 
+    \[
+    \overline{h}=  (h,kj)
+    .\] 
+    \[
+    f(\overline{x_0} + \overline{h}) - f(\overline{x_0}) = L(\overline{h}) + \dots
+    .\] 
+    \[
+    f_1(x_0+h,y_0+k) - f_1(x_0,,y_0) = \partial_{x}f_1(x_0,y_0) h + \partial_{y} f+f_1(x_0,y_0)k + \dots
+    .\] 
+    \[
+  L(h,k) =   \begin{pmatrix} 
+    \partial_{x} f_1(x_0,y_0)h + \partial_{y}  f_1(x_0,y_0)k \\
+    \partial_{x} f_2(x_0,y_0)h + \partial_{y} f_{2}(x_0,0)
+    \end{pmatrix}  =
+    .\] 
+    \[
+    \begin{pmatrix} 
+        \partial_{x}  f_1(x_0,y_0)  & \partial_{y} f_1(x_0,y_0) \\
+        \partial_{x} f_2(x_0,y_0) & \partial_{y} f_{2}(x_0,y_0) 
+    \end{pmatrix} 
+    \begin{pmatrix} 
+        h\\
+        h\\
+    \end{pmatrix} 
+    .\] 
+\end{theorem}
+\[
+\iint_{D} xy dx
+.\] 
+\[
+    D = \{(x,y)  \mid| x + 2y|  \ge  3, |x - y| \le  3\}
+.\] 
+\[
+u = x + 2y
+.\] 
+\[
+v = x - y
+.\] 
+\[
+J = \begin{vmatrix}
+ 1 & 2\\
+ 1 & -1
+\end{vmatrix}  = -1 - 2 = -3
+.\] 
+\[
+u - v = 3 y
+.\] 
+\[
+u + 2v = 3 x
+.\] 
+\[
+xy = \frac{(u - v)(u + 2v)}{9}
+.\] 
 \end{document}
+
